@@ -5,6 +5,6 @@
 <li>John Underwood</li>
 <li>Saadman Bin Nahid</li>
 <li>Jae Hyeok Seong</li>
-<li>Aljonn Santos</li>
+<li>Aljonn Santos - 24661338</li>
 <li>Terence Tran</li>
 </ul>
