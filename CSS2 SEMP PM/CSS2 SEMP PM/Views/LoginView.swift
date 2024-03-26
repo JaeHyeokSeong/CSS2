@@ -59,7 +59,7 @@ struct LoginView: View {
                     .font(.system(size: 40))
                      
                     
-                    NavigationLink(destination: Text("You are logged in @\(username)"), isActive: $showLoginScreen) {
+                    NavigationLink(destination: MainPage(), isActive: $showLoginScreen) {
                     }
                 }
             }
