@@ -20,7 +20,14 @@ struct MainPage: View {
     let credentials: [Credential] = [
         Credential(email: "email1@gmail.com", password: "password1", link: "www.google.com"),
         Credential(email: "email2@gmail.com", password: "password2", link: "www.google.com"),
-        Credential(email: "email3@gmail.com", password: "password3", link: "www.naver.com")
+        Credential(email: "email3@gmail.com", password: "password3", link: "www.naver.com"),
+        Credential(email: "email3@gmail.com", password: "password4", link: "www.naver.com"),
+        Credential(email: "email3@gmail.com", password: "password5", link: "www.naver.com"),
+        Credential(email: "email3@gmail.com", password: "password6", link: "www.naver.com"),
+        Credential(email: "email3@gmail.com", password: "password7", link: "www.naver.com"),
+        Credential(email: "email3@gmail.com", password: "password8", link: "www.naver.com"),
+        Credential(email: "email3@gmail.com", password: "password9", link: "www.naver.com"),
+        Credential(email: "email3@gmail.com", password: "password10", link: "www.naver.com")
     ]
     
     var filteredCredentials: [Credential] {

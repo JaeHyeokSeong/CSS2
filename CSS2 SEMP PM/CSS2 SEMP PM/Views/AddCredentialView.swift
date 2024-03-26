@@ -21,43 +21,46 @@ struct AddCredentialView: View {
     
     var body: some View {
         VStack {
-            HStack {
-                Image(systemName: "hare.fill")
-                Text("Add Credentials")
-            }
-            .padding()
-            
-            
-            HStack {
-                Text("Title:")
-                    .padding(.trailing, 10.0)
-                TextField("Title", text: $_title)
-                    .frame(width:200.0)
-                    .textFieldStyle(RoundedBorderTextFieldStyle())
-            }
-            HStack {
-                Text("Email:")
-                    .padding(.trailing, 10.0)
-                TextField("Email", text: $_email)
-                    .frame(width:200.0)
-                    .textFieldStyle(RoundedBorderTextFieldStyle())
-            }
-            HStack {
-                Text("Password:")
-                    .padding(.trailing, 10.0)
-                TextField("Password", text: $_password)
-                    .frame(width:200.0)
-                    .textFieldStyle(RoundedBorderTextFieldStyle())
-            }
-            
-            
-            Button("Add") {
+                HStack {
+                    Image(systemName: "hare.fill")
+                    Text("Add Credentials")
+                }
+                .padding()
+                .padding(.top, UIApplication.shared.windows.first?.safeAreaInsets.top)
                 
+                Spacer()
+                
+                VStack {
+                    HStack {
+                        Text("Title:")
+                            .padding(.trailing, 10.0)
+                        TextField("Title", text: $_title)
+                            .frame(width:200.0)
+                            .textFieldStyle(RoundedBorderTextFieldStyle())
+                    }
+                    HStack {
+                        Text("Email:")
+                            .padding(.trailing, 10.0)
+                        TextField("Email", text: $_email)
+                            .frame(width:200.0)
+                            .textFieldStyle(RoundedBorderTextFieldStyle())
+                    }
+                    HStack {
+                        Text("Password:")
+                            .padding(.trailing, 10.0)
+                        TextField("Password", text: $_password)
+                            .frame(width:200.0)
+                            .textFieldStyle(RoundedBorderTextFieldStyle())
+                    }
+                    
+                    Button("Add") {
+                        
+                    }
+                }
+                
+                Spacer()
             }
-            
-            
-            
-        }
+            .frame(maxWidth: .infinity, maxHeight: .infinity)
     }
 }
 
