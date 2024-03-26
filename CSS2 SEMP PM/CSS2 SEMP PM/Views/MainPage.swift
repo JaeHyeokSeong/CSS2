@@ -16,6 +16,7 @@ struct Credential: Identifiable {
 
 struct MainPage: View {
     @State private var searchText: String = ""
+    @State private var showingAddCredentialView = false
     
     let credentials: [Credential] = [
         Credential(email: "email1@gmail.com", password: "password1", link: "www.google.com"),
@@ -47,10 +48,21 @@ struct MainPage: View {
     var body: some View {
         NavigationView {
             VStack {
-                TextField("Search", text: $searchText)
-                    .textFieldStyle(RoundedBorderTextFieldStyle())
-                    .padding(.horizontal)
-                
+                ZStack(alignment: .leading) {
+                    RoundedRectangle(cornerRadius: 8)
+                        .stroke(Color.gray, lineWidth: 1)
+                    
+                    HStack {
+                        Image(systemName: "magnifyingglass")
+                            .foregroundColor(.gray)
+                            .padding(.leading, 8)
+                        TextField("Search", text: $searchText)
+                            .padding(.horizontal, 8)
+                    }
+                }
+                .frame(height: 40)
+                .frame(width: 360)
+                .padding(.bottom, 20)
                 Spacer()
                 
                 List(filteredCredentials) { credential in
@@ -63,7 +75,18 @@ struct MainPage: View {
                         .padding(.vertical, 10)
                     }
                 }
-                .navigationBarTitle("Credentials")
+                
+            }
+            .navigationBarTitle("Passwords", displayMode: .inline)
+            .navigationBarItems(trailing:
+                Button(action: {
+                    showingAddCredentialView = true
+                }) {
+                    Image(systemName: "plus")
+                }
+            )
+            .sheet(isPresented: $showingAddCredentialView) {
+                AddCredentialView()
             }
         }
     }
