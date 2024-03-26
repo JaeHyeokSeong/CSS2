@@ -29,19 +29,24 @@ struct AddCredentialView: View {
                 
                 VStack{
                     Form {
-                        Section(header: Text("Title")){
+                        Section(header: Text("Site Information")){
                             TextField("Title", text: $_title)
+                            TextField("Site Address", text: Binding<String>(
+                                get: { _siteAddress ?? "" }, set: { _siteAddress = $0 }
+                            ))
+                                .keyboardType(.URL)
                         }
                         Section(header: Text("Credentials")) {
                             TextField("Email", text: $_email)
                                 .keyboardType(.emailAddress)
                             SecureField("Password", text: $_password)
                         }
-                        Section(header: Text("Site Information")) {
-                            TextField("Site Address", text: Binding<String>(
-                                get: { _siteAddress ?? "" }, set: { _siteAddress = $0 }
-                            ))
-                                .keyboardType(.URL)
+                        Section(header: Text("Encryption Method")) {
+                            Menu("Encryption Method") {
+                                Text("AES")
+                                Text("RSA")
+                                Text("SHA")
+                            }
                         }
                         Section(header: Text("Notes")){
                             TextField("Notes", text: Binding<String>(
@@ -50,7 +55,6 @@ struct AddCredentialView: View {
                             .lineLimit(3...)
                             
                         }
-                        
                         Section {
                             Button("Add") {
                                 // Action when Add button is tapped
