@@ -34,11 +34,13 @@ struct CreateMKeyView: View {
                 .cornerRadius(15)
         }
     }
+    
+    func matchPasswords() -> Bool {
+        return password == confirmPassword
+    }
 }
 
-func matchPasswords() {
 
-}
 
 #Preview {
     CreateMKeyView()

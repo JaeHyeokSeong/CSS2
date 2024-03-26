@@ -16,6 +16,7 @@
 		357655112BB2CA1700F5087A /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3576550F2BB2CA1700F5087A /* LoginView.swift */; };
 		357655122BB2CA1700F5087A /* CreateMKeyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 357655102BB2CA1700F5087A /* CreateMKeyView.swift */; };
 		52F47C782BB2BEC200073E93 /* Credentials.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52F47C772BB2BEC200073E93 /* Credentials.swift */; };
+		52F47C7E2BB2CDB800073E93 /* AddCredentialView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52F47C7D2BB2CDB800073E93 /* AddCredentialView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -48,6 +49,7 @@
 		3576550F2BB2CA1700F5087A /* LoginView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
 		357655102BB2CA1700F5087A /* CreateMKeyView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreateMKeyView.swift; sourceTree = "<group>"; };
 		52F47C772BB2BEC200073E93 /* Credentials.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Credentials.swift; sourceTree = "<group>"; };
+		52F47C7D2BB2CDB800073E93 /* AddCredentialView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddCredentialView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -121,6 +123,7 @@
 				355D2DEA2BAEA8FF006B37D2 /* OpenAppView.swift */,
 				357655102BB2CA1700F5087A /* CreateMKeyView.swift */,
 				3576550F2BB2CA1700F5087A /* LoginView.swift */,
+				52F47C7D2BB2CDB800073E93 /* AddCredentialView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -264,6 +267,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				357655112BB2CA1700F5087A /* LoginView.swift in Sources */,
+				52F47C7E2BB2CDB800073E93 /* AddCredentialView.swift in Sources */,
 				355D2DEB2BAEA8FF006B37D2 /* OpenAppView.swift in Sources */,
 				357655122BB2CA1700F5087A /* CreateMKeyView.swift in Sources */,
 				355D2DC32BAE9E30006B37D2 /* ContentView.swift in Sources */,
