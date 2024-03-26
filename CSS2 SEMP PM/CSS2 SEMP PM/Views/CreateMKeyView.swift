@@ -13,9 +13,6 @@ struct CreateMKeyView: View {
     @State private var errorInput = 0
     @State private var showMainPage = false
     var body: some View {
-        if showMainPage {
-            MainPage()
-        }
         NavigationView {
             VStack {
                 Image(systemName: "hare.fill")
