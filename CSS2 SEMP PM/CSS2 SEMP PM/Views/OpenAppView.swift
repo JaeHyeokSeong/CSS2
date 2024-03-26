@@ -14,7 +14,7 @@ struct OpenAppView: View {
     
     var body: some View {
         if isActive {
-            LoginView()
+            CreateMKeyView()
         }
         else {
             VStack {
