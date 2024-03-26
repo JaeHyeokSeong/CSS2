@@ -11,15 +11,16 @@ struct Credential: Identifiable {
     var id = UUID()
     var email: String
     var password: String
+    var link: String
 }
 
 struct MainPage: View {
     @State private var searchText: String = ""
     
     let credentials: [Credential] = [
-        Credential(email: "email1@gmail.com", password: "password1"),
-        Credential(email: "email2@gmail.com", password: "password2"),
-        Credential(email: "email3@gmail.com", password: "password3")
+        Credential(email: "email1@gmail.com", password: "password1", link: "www.google.com"),
+        Credential(email: "email2@gmail.com", password: "password2", link: "www.google.com"),
+        Credential(email: "email3@gmail.com", password: "password3", link: "www.naver.com")
     ]
     
     var filteredCredentials: [Credential] {
@@ -30,6 +31,8 @@ struct MainPage: View {
             return credentials.filter {
                 $0.email.lowercased().contains(lowercasedSearchText) ||
                 $0.password.lowercased().contains(lowercasedSearchText)
+                    ||
+                $0.link.lowercased().contains(lowercasedSearchText)
             }
         }
     }
@@ -48,6 +51,7 @@ struct MainPage: View {
                         VStack(alignment: .leading) {
                             Text("Email: \(credential.email)")
                             Text("Password: \(credential.password)")
+                            Text("Link: \(credential.link)")
                         }
                         .padding(.vertical, 10)
                     }
@@ -66,6 +70,7 @@ struct DetailView: View {
         VStack {
             Text("Email: \(credential.email)")
             Text("Password: \(credential.password)")
+            Text("Link: \(credential.link)")
         }
         .navigationBarTitle("Detail")
     }
