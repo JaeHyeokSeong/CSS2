@@ -26,7 +26,6 @@ struct AddCredentialView: View {
                     Text("Add Credentials")
                 }
                 .padding()
-                .padding(.top, UIApplication.shared.windows.first?.safeAreaInsets.top)
                 
                 Spacer()
                 
@@ -52,6 +51,15 @@ struct AddCredentialView: View {
                             .frame(width:200.0)
                             .textFieldStyle(RoundedBorderTextFieldStyle())
                     }
+                    
+                    HStack {
+                        Text("Site Address:")
+                            .padding(.trailing, 10.0)
+                        TextField("Site Address", text: $_siteAddress)
+                            .frame(width:200.0)
+                            .textFieldStyle(RoundedBorderTextFieldStyle())
+                    }
+                    
                     
                     Button("Add") {
                         
