@@ -13,6 +13,7 @@
 		355D2DC82BAE9E30006B37D2 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 355D2DC72BAE9E30006B37D2 /* Preview Assets.xcassets */; };
 		355D2DEB2BAEA8FF006B37D2 /* OpenAppView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 355D2DEA2BAEA8FF006B37D2 /* OpenAppView.swift */; };
 		355D2DED2BAFC8EB006B37D2 /* MainPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 355D2DEC2BAFC8EB006B37D2 /* MainPage.swift */; };
+		52F47C752BB2BC0B00073E93 /* User Model.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52F47C742BB2BC0B00073E93 /* User Model.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -42,6 +43,7 @@
 		355D2DD72BAE9E31006B37D2 /* CSS2 SEMP PMUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "CSS2 SEMP PMUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		355D2DEA2BAEA8FF006B37D2 /* OpenAppView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OpenAppView.swift; sourceTree = "<group>"; };
 		355D2DEC2BAFC8EB006B37D2 /* MainPage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainPage.swift; sourceTree = "<group>"; };
+		52F47C742BB2BC0B00073E93 /* User Model.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "User Model.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -94,6 +96,7 @@
 				52F47C732BB2BBA900073E93 /* Views */,
 				355D2DC42BAE9E30006B37D2 /* Assets.xcassets */,
 				355D2DC62BAE9E30006B37D2 /* Preview Content */,
+				52F47C762BB2BC1000073E93 /* Model */,
 			);
 			path = "CSS2 SEMP PM";
 			sourceTree = "<group>";
@@ -114,6 +117,14 @@
 				355D2DEA2BAEA8FF006B37D2 /* OpenAppView.swift */,
 			);
 			path = Views;
+			sourceTree = "<group>";
+		};
+		52F47C762BB2BC1000073E93 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				52F47C742BB2BC0B00073E93 /* User Model.swift */,
+			);
+			path = Model;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -247,6 +258,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				355D2DEB2BAEA8FF006B37D2 /* OpenAppView.swift in Sources */,
+				52F47C752BB2BC0B00073E93 /* User Model.swift in Sources */,
 				355D2DC32BAE9E30006B37D2 /* ContentView.swift in Sources */,
 				355D2DC12BAE9E30006B37D2 /* CSS2_SEMP_PMApp.swift in Sources */,
 				355D2DED2BAFC8EB006B37D2 /* MainPage.swift in Sources */,
