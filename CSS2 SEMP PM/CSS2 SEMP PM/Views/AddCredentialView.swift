@@ -29,45 +29,48 @@ struct AddCredentialView: View {
                 
                 Spacer()
                 
-                VStack {
-                    HStack {
+            VStack(spacing: 15) {
+                    HStack(spacing: 20) {
                         Text("Title:")
-                            .padding(.trailing, 10.0)
                         TextField("Title", text: $_title)
-                            .frame(width:200.0)
                             .textFieldStyle(RoundedBorderTextFieldStyle())
-                    }
-                    HStack {
-                        Text("Email:")
-                            .padding(.trailing, 10.0)
-                        TextField("Email", text: $_email)
-                            .frame(width:200.0)
-                            .textFieldStyle(RoundedBorderTextFieldStyle())
-                    }
-                    HStack {
-                        Text("Password:")
-                            .padding(.trailing, 10.0)
-                        TextField("Password", text: $_password)
-                            .frame(width:200.0)
-                            .textFieldStyle(RoundedBorderTextFieldStyle())
+                            .shadow(radius: 5)
                     }
                     
-                    HStack {
+                    HStack(spacing: 20) {
+                        Text("Email:")
+                        TextField("Email", text: $_email)
+                            .textFieldStyle(RoundedBorderTextFieldStyle())
+                            .shadow(radius: 5)
+                    }
+                    
+                    HStack (spacing: 20){
+                        Text("Password:")
+                        SecureField("Password", text: $_password)
+                            .textFieldStyle(RoundedBorderTextFieldStyle())
+                            .shadow(radius: 5)
+                    }
+                    
+                    HStack (spacing: 20){
                         Text("Site Address:")
-                            .padding(.trailing, 10.0)
-                        TextField("Site Address", text: Binding<String> (
+                        TextField("Site Address", text: Binding<String>(
                             get: { _siteAddress ?? "" }, set: { _siteAddress = $0 }
                         ))
-                            .frame(width:200.0)
-                            .textFieldStyle(RoundedBorderTextFieldStyle())
+                        .textFieldStyle(RoundedBorderTextFieldStyle())
+                        .shadow(radius: 5)
                     }
-                    
                     
                     Button("Add") {
-                        
+                        // Action for the button
                     }
-                    .buttonStyle(.borderedProminent)
+                    .foregroundColor(.white)
+                    .padding()
+                    .background(Color.blue)
+                    .cornerRadius(8)
+                    .shadow(radius: 5)
                 }
+                .padding()
+
                 
                 Spacer()
             }
