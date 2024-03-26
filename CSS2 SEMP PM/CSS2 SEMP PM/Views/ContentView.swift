@@ -60,7 +60,6 @@ struct ContentView: View {
                      
                     
                     NavigationLink(destination: Text("You are logged in @\(username)"), isActive: $showLoginScreen) {
-                        MainPage()
                     }
                 }
             }
