@@ -8,14 +8,15 @@
 import Foundation
 
 struct Credentials{
-    private var email: String
-    private var password: String
-    private var siteTitle: String
-    private var siteAddress: String?
-    private var healthStatus: Int
-    private var breachedStatus: Int
-    private var timeToChange: Int
-    private var notes: String?
+    private var _email: String
+    private var _password: String
+    private var _siteTitle: String
+    private var _siteAddress: String?
+    private var _healthStatus: Int
+    private var _breachedStatus: Int
+    private var _timeToChange: Int
+    private var _notes: String?
+    private var _encryptionMethod: String
     
     
     var email: String {
