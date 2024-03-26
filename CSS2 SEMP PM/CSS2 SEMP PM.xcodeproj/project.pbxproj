@@ -91,9 +91,7 @@
 			isa = PBXGroup;
 			children = (
 				355D2DC02BAE9E30006B37D2 /* CSS2_SEMP_PMApp.swift */,
-				355D2DC22BAE9E30006B37D2 /* ContentView.swift */,
-				355D2DEC2BAFC8EB006B37D2 /* MainPage.swift */,
-				355D2DEA2BAEA8FF006B37D2 /* OpenAppView.swift */,
+				52F47C732BB2BBA900073E93 /* Views */,
 				355D2DC42BAE9E30006B37D2 /* Assets.xcassets */,
 				355D2DC62BAE9E30006B37D2 /* Preview Content */,
 			);
@@ -106,6 +104,16 @@
 				355D2DC72BAE9E30006B37D2 /* Preview Assets.xcassets */,
 			);
 			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		52F47C732BB2BBA900073E93 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				355D2DC22BAE9E30006B37D2 /* ContentView.swift */,
+				355D2DEC2BAFC8EB006B37D2 /* MainPage.swift */,
+				355D2DEA2BAEA8FF006B37D2 /* OpenAppView.swift */,
+			);
+			path = Views;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
