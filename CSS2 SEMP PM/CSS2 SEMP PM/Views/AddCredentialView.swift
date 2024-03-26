@@ -55,7 +55,9 @@ struct AddCredentialView: View {
                     HStack {
                         Text("Site Address:")
                             .padding(.trailing, 10.0)
-                        TextField("Site Address", text: $_siteAddress)
+                        TextField("Site Address", text: Binding<String> (
+                            get: { _siteAddress ?? "" }, set: { _siteAddress = $0 }
+                        ))
                             .frame(width:200.0)
                             .textFieldStyle(RoundedBorderTextFieldStyle())
                     }
