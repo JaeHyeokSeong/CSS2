@@ -91,5 +91,14 @@ struct Credentials{
             }
         }
     
+    var encryptionMethod: String{
+        get{
+            return _encryptionMethod
+        }
+        set{
+            _encryptionMethod = newValue
+        }
+    }
+    
     
 }
