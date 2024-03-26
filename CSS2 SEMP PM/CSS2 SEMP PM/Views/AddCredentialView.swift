@@ -27,54 +27,39 @@ struct AddCredentialView: View {
                 }
                 .padding()
                 
-                Spacer()
-                
-            VStack(spacing: 15) {
-                    HStack(spacing: 20) {
-                        Text("Title:")
-                        TextField("Title", text: $_title)
-                            .textFieldStyle(RoundedBorderTextFieldStyle())
-                            .shadow(radius: 5)
+                VStack{
+                    Form {
+                        Section(header: Text("Title")){
+                            TextField("Title", text: $_title)
+                        }
+                        Section(header: Text("Credentials")) {
+                            TextField("Email", text: $_email)
+                                .keyboardType(.emailAddress)
+                            SecureField("Password", text: $_password)
+                        }
+                        Section(header: Text("Site Information")) {
+                            TextField("Site Address", text: Binding<String>(
+                                get: { _siteAddress ?? "" }, set: { _siteAddress = $0 }
+                            ))
+                                .keyboardType(.URL)
+                        }
+                        Section(header: Text("Notes")){
+                            TextField("Notes", text: Binding<String>(
+                                get: { _notes ?? "" }, set: { _notes = $0 }
+                            ), axis: .vertical)
+                            .lineLimit(3...)
+                            
+                        }
+                        
+                        Section {
+                            Button("Add") {
+                                // Action when Add button is tapped
+                            }
+                            .frame(maxWidth: .infinity, alignment: .center)
+                        }
                     }
-                    
-                    HStack(spacing: 20) {
-                        Text("Email:")
-                        TextField("Email", text: $_email)
-                            .textFieldStyle(RoundedBorderTextFieldStyle())
-                            .shadow(radius: 5)
-                    }
-                    
-                    HStack (spacing: 20){
-                        Text("Password:")
-                        SecureField("Password", text: $_password)
-                            .textFieldStyle(RoundedBorderTextFieldStyle())
-                            .shadow(radius: 5)
-                    }
-                    
-                    HStack (spacing: 20){
-                        Text("Site Address:")
-                        TextField("Site Address", text: Binding<String>(
-                            get: { _siteAddress ?? "" }, set: { _siteAddress = $0 }
-                        ))
-                        .textFieldStyle(RoundedBorderTextFieldStyle())
-                        .shadow(radius: 5)
-                    }
-                    
-                    Button("Add") {
-                        // Action for the button
-                    }
-                    .foregroundColor(.white)
-                    .padding()
-                    .background(Color.blue)
-                    .cornerRadius(8)
-                    .shadow(radius: 5)
                 }
-                .padding()
-
-                
-                Spacer()
             }
-            .frame(maxWidth: .infinity, maxHeight: .infinity)
     }
 }
 
