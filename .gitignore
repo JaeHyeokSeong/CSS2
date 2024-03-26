@@ -1,3 +1,7 @@
+# ignore DS_Store
+.DS_Store
+CSS2 SEMP PM/.DS_Store
+
 # Xcode
 #
 # gitignore contributors: remember to update Global/Xcode.gitignore, Objective-C.gitignore & Swift.gitignore
