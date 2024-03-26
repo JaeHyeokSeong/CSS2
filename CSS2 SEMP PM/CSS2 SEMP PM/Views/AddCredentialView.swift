@@ -56,6 +56,7 @@ struct AddCredentialView: View {
                     Button("Add") {
                         
                     }
+                    .buttonStyle(.borderedProminent)
                 }
                 
                 Spacer()
