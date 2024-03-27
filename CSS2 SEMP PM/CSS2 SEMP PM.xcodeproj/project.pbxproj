@@ -98,6 +98,7 @@
 		355D2DBF2BAE9E30006B37D2 /* CSS2 SEMP PM */ = {
 			isa = PBXGroup;
 			children = (
+				520EF73A2BB44B3900AD0B02 /* ViewModel */,
 				52F47C762BB2BC1000073E93 /* Model */,
 				355D2DC02BAE9E30006B37D2 /* CSS2_SEMP_PMApp.swift */,
 				52F47C732BB2BBA900073E93 /* Views */,
@@ -113,6 +114,13 @@
 				355D2DC72BAE9E30006B37D2 /* Preview Assets.xcassets */,
 			);
 			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		520EF73A2BB44B3900AD0B02 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = ViewModel;
 			sourceTree = "<group>";
 		};
 		52F47C732BB2BBA900073E93 /* Views */ = {

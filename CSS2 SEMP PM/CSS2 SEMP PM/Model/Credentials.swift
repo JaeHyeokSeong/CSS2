@@ -7,6 +7,9 @@
 
 import Foundation
 
+var credentials: [Credentials] = [] //global variable to hold array of credentials. Need to be encrypted??
+
+
 struct Credentials{
     private var _email: String
     private var _password: String
@@ -18,6 +21,17 @@ struct Credentials{
     private var _notes: String?
     private var _encryptionMethod: String
     
+    init(email: String, password: String, siteTitle: String, siteAddress: String?, healthStatus: Int, breachedStatus: Int, timeToChange: Int, notes: String?, encryptionMethod: String) {
+            _email = email
+            _password = password
+            _siteTitle = siteTitle
+            _siteAddress = siteAddress
+            _healthStatus = healthStatus
+            _breachedStatus = breachedStatus
+            _timeToChange = timeToChange
+            _notes = notes
+            _encryptionMethod = encryptionMethod
+        }
     
     var email: String {
             get {
