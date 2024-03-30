@@ -11,6 +11,12 @@ import LocalAuthentication
 class ViewModel: ObservableObject {
     @Published var login: [Login] = []
     @Published var credentials: [Credentials] = []
+    @Published var generatedPassword: String = ""
+    @Published var usedLanguages: [String] = []
+    
+    private var languageRanges: [LanguageRange] {
+            LanguageRangeModel.shared.ranges
+        }
     
     init() {
         //deleteMasterKeyFile()
@@ -18,6 +24,28 @@ class ViewModel: ObservableObject {
         loadLogins()
         prepareCredentialsFile()
         loadCredentials()
+    }
+    
+    func generatePassword(totalLength: Int) {
+        let totalLength = max(32, min(totalLength, 64))
+        var passwordChars: [String] = []
+        var usedLangDescriptions: Set<String> = []
+        
+        for _ in 0..<(totalLength - 4) {
+            guard let charRange = languageRanges.randomElement() else { continue }
+            let charCode = Int.random(in: charRange.start...charRange.end)
+            if let scalar = UnicodeScalar(charCode) {
+                let char = String(Character(scalar))
+                passwordChars.append(char)
+                usedLangDescriptions.insert(charRange.description)
+            }
+        }
+        
+        let halfIndex = passwordChars.count / 2
+        let firstHalf = passwordChars[0..<halfIndex].joined()
+        let secondHalf = passwordChars[halfIndex...].joined()
+        generatedPassword = "(\(firstHalf))-(\(secondHalf))"
+        usedLanguages = Array(usedLangDescriptions).sorted()
     }
     
     func filteredCredentials(searchText: String) -> [Credentials] {

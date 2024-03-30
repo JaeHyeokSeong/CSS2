@@ -10,6 +10,7 @@
 		35404C152BB7A2D1005C030A /* ViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35404C142BB7A2D1005C030A /* ViewModel.swift */; };
 		35404C172BB7A372005C030A /* Login.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35404C162BB7A372005C030A /* Login.swift */; };
 		35404C1B2BB7FEF2005C030A /* DetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35404C1A2BB7FEF2005C030A /* DetailView.swift */; };
+		35404C1D2BB82FFA005C030A /* PassGenLangModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35404C1C2BB82FFA005C030A /* PassGenLangModel.swift */; };
 		355D2DC12BAE9E30006B37D2 /* CSS2_SEMP_PMApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 355D2DC02BAE9E30006B37D2 /* CSS2_SEMP_PMApp.swift */; };
 		355D2DC52BAE9E30006B37D2 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 355D2DC42BAE9E30006B37D2 /* Assets.xcassets */; };
 		355D2DC82BAE9E30006B37D2 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 355D2DC72BAE9E30006B37D2 /* Preview Assets.xcassets */; };
@@ -44,6 +45,7 @@
 		35404C142BB7A2D1005C030A /* ViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewModel.swift; sourceTree = "<group>"; };
 		35404C162BB7A372005C030A /* Login.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Login.swift; sourceTree = "<group>"; };
 		35404C1A2BB7FEF2005C030A /* DetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailView.swift; sourceTree = "<group>"; };
+		35404C1C2BB82FFA005C030A /* PassGenLangModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PassGenLangModel.swift; sourceTree = "<group>"; };
 		355D2DBD2BAE9E30006B37D2 /* CSS2 SEMP PM.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "CSS2 SEMP PM.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		355D2DC02BAE9E30006B37D2 /* CSS2_SEMP_PMApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CSS2_SEMP_PMApp.swift; sourceTree = "<group>"; };
 		355D2DC42BAE9E30006B37D2 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -151,6 +153,7 @@
 			children = (
 				52F47C772BB2BEC200073E93 /* Credentials.swift */,
 				35404C162BB7A372005C030A /* Login.swift */,
+				35404C1C2BB82FFA005C030A /* PassGenLangModel.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -296,6 +299,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				35404C1D2BB82FFA005C030A /* PassGenLangModel.swift in Sources */,
 				357655112BB2CA1700F5087A /* LoginView.swift in Sources */,
 				35404C172BB7A372005C030A /* Login.swift in Sources */,
 				35404C152BB7A2D1005C030A /* ViewModel.swift in Sources */,

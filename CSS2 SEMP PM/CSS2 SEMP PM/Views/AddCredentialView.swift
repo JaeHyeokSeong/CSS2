@@ -32,7 +32,13 @@ struct AddCredentialView: View {
                         Section(header: Text("Credentials")) {
                             TextField("Email", text: $credential.email)
                                 .keyboardType(.emailAddress)
-                            SecureField("Password", text: $credential.password)
+                            HStack {
+                                SecureField("Password", text: $credential.password)
+                                Button ("GEN") {
+                                    viewModel.generatePassword(totalLength: 64)
+                                    credential.password = viewModel.generatedPassword
+                                }
+                            }
                         }
                         Section(header: Text("Encryption Method")) {
                             Menu(encryptSelection) {
