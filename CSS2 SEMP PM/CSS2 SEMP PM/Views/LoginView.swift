@@ -6,11 +6,10 @@
 //
 
 import SwiftUI
-import LocalAuthentication
+
 
 struct LoginView: View {
     @EnvironmentObject var viewModel: ViewModel
-    @State private var username = ""
     @State private var password = ""
     @State private var errorInput = 0
     @State private var showLoginScreen = false
@@ -29,12 +28,7 @@ struct LoginView: View {
                         .font(.title)
                         .bold()
                         .padding()
-                    TextField("Username", text: $username)
-                        .padding()
-                        .frame(width: 300, height: 50)
-                        .background(Color.black.opacity(0.1))
-                        .cornerRadius(15)
-                        .border(.red.opacity(0.4), width: CGFloat(errorInput))
+                   
                     SecureField("Password", text: $password)
                         .padding()
                         .frame(width: 300, height: 50)
@@ -43,7 +37,10 @@ struct LoginView: View {
                         .border(.red.opacity(0.4), width: CGFloat(errorInput))
                     
                     Button("Login") {
-                        authUser(username: username, Password: password)
+                        showLoginScreen = viewModel.authUser(password: password)
+                        if showLoginScreen == false{
+                            errorInput = 3
+                        }
                     }
                     .font(.system(size: 28))
                     .foregroundColor(.white.opacity(0.9))
@@ -52,7 +49,10 @@ struct LoginView: View {
                     .cornerRadius(10)
                     
                     Button {
-                        faceIDAuth()
+                        showLoginScreen = viewModel.faceIDAuth()
+                        if showLoginScreen == false{
+                            errorInput = 3
+                        }
                     }
                     label: {
                         Image(systemName: "faceid")
@@ -68,36 +68,6 @@ struct LoginView: View {
         }
     }
     
-    func authUser(username: String, Password: String) {
-        // Implement database connection
-        
-        // testing purposes
-        if username.lowercased() == "johnduw@gmail.com" {
-            if password == "TestingPassword123!@#" {
-                showLoginScreen = true
-            }
-        }
-        else {
-            errorInput = 3
-        }
-    }
-    
-    func faceIDAuth() {
-        let context = LAContext()
-        var error: NSError?
-        if context.canEvaluatePolicy(.deviceOwnerAuthenticationWithBiometrics, error: &error) {
-            context.evaluatePolicy(.deviceOwnerAuthenticationWithBiometrics, localizedReason: "Login with Face ID") { success, authenticationError in
-                if success {
-                    showLoginScreen = true
-                } else {
-                    errorInput = 3
-                }
-                
-            }
-        } else {
-            
-        }
-    }
 }
 
 #Preview {
