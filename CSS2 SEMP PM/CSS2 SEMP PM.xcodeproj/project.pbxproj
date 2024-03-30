@@ -18,6 +18,7 @@
 		357655122BB2CA1700F5087A /* CreateMKeyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 357655102BB2CA1700F5087A /* CreateMKeyView.swift */; };
 		52F47C782BB2BEC200073E93 /* Credentials.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52F47C772BB2BEC200073E93 /* Credentials.swift */; };
 		52F47C7E2BB2CDB800073E93 /* AddCredentialView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52F47C7D2BB2CDB800073E93 /* AddCredentialView.swift */; };
+		8CE7D6622BB7B078000CCF39 /* masterkey.json in Resources */ = {isa = PBXBuildFile; fileRef = 8CE7D6612BB7B078000CCF39 /* masterkey.json */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -52,6 +53,7 @@
 		357655102BB2CA1700F5087A /* CreateMKeyView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreateMKeyView.swift; sourceTree = "<group>"; };
 		52F47C772BB2BEC200073E93 /* Credentials.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Credentials.swift; sourceTree = "<group>"; };
 		52F47C7D2BB2CDB800073E93 /* AddCredentialView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddCredentialView.swift; sourceTree = "<group>"; };
+		8CE7D6612BB7B078000CCF39 /* masterkey.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = masterkey.json; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -108,6 +110,7 @@
 		355D2DBF2BAE9E30006B37D2 /* CSS2 SEMP PM */ = {
 			isa = PBXGroup;
 			children = (
+				8CE7D6602BB7B02B000CCF39 /* Resources */,
 				355D2DC02BAE9E30006B37D2 /* CSS2_SEMP_PMApp.swift */,
 				35404C132BB7A1DE005C030A /* ViewModel */,
 				52F47C762BB2BC1000073E93 /* Model */,
@@ -145,6 +148,14 @@
 				35404C162BB7A372005C030A /* Login.swift */,
 			);
 			path = Model;
+			sourceTree = "<group>";
+		};
+		8CE7D6602BB7B02B000CCF39 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				8CE7D6612BB7B078000CCF39 /* masterkey.json */,
+			);
+			path = Resources;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -253,6 +264,7 @@
 			files = (
 				355D2DC82BAE9E30006B37D2 /* Preview Assets.xcassets in Resources */,
 				355D2DC52BAE9E30006B37D2 /* Assets.xcassets in Resources */,
+				8CE7D6622BB7B078000CCF39 /* masterkey.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
