@@ -63,6 +63,7 @@ struct MainPage: View {
                 updateFilteredCredentials()
             }
         }
+        .navigationBarHidden(true)
     }
         
     func updateFilteredCredentials() {

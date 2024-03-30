@@ -69,8 +69,9 @@ struct LoginView: View {
                 }
             }
             .navigationBarHidden(true)
+            .navigationTitle("Logout")
         }
-        .navigationTitle("Logout")
+        
     }
     
 }

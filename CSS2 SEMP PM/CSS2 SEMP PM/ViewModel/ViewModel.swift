@@ -157,6 +157,16 @@ class ViewModel: ObservableObject {
         }
     }
     
+    func deleteCredential(id: String) {
+        if let index = credentials.firstIndex(where: { $0.id == id }) {
+            credentials.remove(at: index)
+            print("Deleted credential with ID: \(id)")
+            saveCredentials()
+        } else {
+            print("Credential with ID \(id) not found.")
+        }
+    }
+    
     func saveLogins() {
         let fileURL = getDocumentsDirectory().appendingPathComponent("masterkey.json")
         

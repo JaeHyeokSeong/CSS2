@@ -14,13 +14,38 @@ struct DetailView: View {
     @EnvironmentObject var viewModel: ViewModel
     @State var credentials: Credentials
     @State var isComplete = false
+    @State var isEditing = false
+    @State var editButton = "Edit"
     
     var body: some View {
         NavigationStack {
             VStack {
                 HStack {
+                 
+                    Button("Done") {
+                        isComplete = true
+                    }
+    
+                    .navigationDestination(isPresented: $isComplete){
+                        MainPage().environmentObject(viewModel)
+//                            .navigationBarBackButtonHidden()
+                    }
+                        
+                    
+                    Spacer()
                     Image(systemName: "hare.fill")
                     Text("View Credentials")
+                    Spacer()
+                    Button(editButton){
+                        isEditing.toggle()
+                        if(editButton == "Edit"){
+                            editButton = "Confirm"
+                        } else if(editButton == "Confirm"){
+                            editButton = "Edit"
+                            viewModel.updateCredential(id: credentials.id, updatedCredential: credentials)
+                        }
+                        
+                    }
                 }
                 .padding()
                 VStack{
@@ -31,11 +56,28 @@ struct DetailView: View {
                                                                            ))
                             .keyboardType(.URL)
                         }
+                            .disabled(!isEditing)
+                        
                         Section(header: Text("Credentials")) {
                             TextField("Email", text: $credentials.email)
                                 .keyboardType(.emailAddress)
-                            SecureField("Password", text: $credentials.password)
+                            HStack {
+                                if(isEditing){
+                                    TextField("Password", text: $credentials.password)
+                                } else{
+                                    SecureField("Password", text: $credentials.password)
+                                }
+                                if(editButton == "Confirm"){
+                                    Button ("GEN") {
+                                        viewModel.generatePassword(totalLength: 64)
+                                        credentials.password = viewModel.generatedPassword
+                                    }
+                                }
+                            }
+                            
+                                
                         }
+                            .disabled(!isEditing)
                         Section(header: Text("Encryption Method")) {
                             Menu(credentials.encryptionMethod) {
                                 Button("AES"){
@@ -49,26 +91,34 @@ struct DetailView: View {
                                 }
                             }
                         }
+                        .disabled(!isEditing)
+                        
                         Section(header: Text("Notes")){
                             TextField("Notes", text: Binding<String>( get: { credentials.notes ?? "" }, set: { credentials.notes = $0 }), axis: .vertical)
                                 .lineLimit(3...)
                         }
+                        .disabled(!isEditing)
+                        
+                        
                         Section {
-                            Button("Save") {
-                                viewModel.updateCredential(id: credentials.id, updatedCredential: credentials)
+                            Button("Delete") {
+                                viewModel.deleteCredential(id: credentials.id)
                                 isComplete = true
+                                }
+                                .frame(maxWidth: .infinity, alignment: .center)
+                                .disabled(false)
+                                .clipShape(RoundedRectangle(cornerRadius: 10))
+                                .foregroundColor(.red)
+                                .navigationDestination(isPresented: $isComplete){
+                                    MainPage().environmentObject(viewModel)
+                                        .navigationBarBackButtonHidden()
                             }
-                            .frame(maxWidth: .infinity, alignment: .center)
-                            .navigationDestination(isPresented: $isComplete){
-                                MainPage().environmentObject(viewModel)
-                                    .navigationBarBackButtonHidden()
-                            }
-                            
                         }
                     }
                 }
             }
         }
+        .navigationBarHidden(true)
     }
 }
 
