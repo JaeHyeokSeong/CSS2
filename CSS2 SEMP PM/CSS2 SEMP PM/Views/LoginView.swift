@@ -49,9 +49,12 @@ struct LoginView: View {
                     .cornerRadius(10)
                     
                     Button {
-                        showLoginScreen = viewModel.faceIDAuth()
-                        if showLoginScreen == false{
-                            errorInput = 3
+                        viewModel.faceIDAuth{ success in
+                            if success{
+                                showLoginScreen = true
+                            } else{
+                                errorInput = 3
+                            }
                         }
                     }
                     label: {

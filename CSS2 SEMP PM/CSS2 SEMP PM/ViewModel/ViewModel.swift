@@ -36,20 +36,20 @@ class ViewModel: ObservableObject {
         }
     }
 
-    func faceIDAuth() -> Bool {
+    func faceIDAuth(completion: @escaping (Bool) -> Void) {
         let context = LAContext()
         var error: NSError?
-        var result = false
+        
         if context.canEvaluatePolicy(.deviceOwnerAuthenticationWithBiometrics, error: &error) {
             context.evaluatePolicy(.deviceOwnerAuthenticationWithBiometrics, localizedReason: "Login with Face ID") { success, authenticationError in
                 if success {
-                    //showLoginScreen = true
-                    print("123")
-                    result = true
+                    completion(true)
+                } else {
+                    completion(false)
                 }
             }
+        } else {
+            completion(false) // Biometrics not available or configured
         }
-        return result
     }
-    
 }
