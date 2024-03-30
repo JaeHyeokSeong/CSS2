@@ -10,12 +10,28 @@ import LocalAuthentication
 
 class ViewModel: ObservableObject {
     @Published var login: [Login] = []
+    @Published var credentials: [Credentials] = []
     
     init() {
-//        deleteMasterKeyFile()
+        //deleteMasterKeyFile()
         prepareMasterKeyFile()
         loadLogins()
     }
+    
+    private func filteredCredentials(searchText: String) -> [Credentials] {
+        let lowercasedSearchText = searchText.lowercased()
+        if searchText.isEmpty {
+            return credentials
+        } else {
+            return credentials.filter {
+                $0.email.lowercased().contains(lowercasedSearchText) ||
+                $0.password.lowercased().contains(lowercasedSearchText)
+                    ||
+                $0.link.lowercased().contains(lowercasedSearchText)
+            }
+        }
+    }
+    
     
     private func getDocumentsDirectory() -> URL {
         FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first!

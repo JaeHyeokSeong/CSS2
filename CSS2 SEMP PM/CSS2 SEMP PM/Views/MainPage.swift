@@ -7,44 +7,10 @@
 
 import SwiftUI
 
-struct Credential: Identifiable {
-    var id = UUID()
-    var email: String
-    var password: String
-    var link: String
-}
-
 struct MainPage: View {
     @EnvironmentObject var viewModel: ViewModel
     @State private var searchText: String = ""
     @State private var showingAddCredentialView = false
-    
-    let credentials: [Credential] = [
-        Credential(email: "email1@gmail.com", password: "password1", link: "www.google.com"),
-        Credential(email: "email2@gmail.com", password: "password2", link: "www.google.com"),
-        Credential(email: "email3@gmail.com", password: "password3", link: "www.naver.com"),
-        Credential(email: "email3@gmail.com", password: "password4", link: "www.naver.com"),
-        Credential(email: "email3@gmail.com", password: "password5", link: "www.naver.com"),
-        Credential(email: "email3@gmail.com", password: "password6", link: "www.naver.com"),
-        Credential(email: "email3@gmail.com", password: "password7", link: "www.naver.com"),
-        Credential(email: "email3@gmail.com", password: "password8", link: "www.naver.com"),
-        Credential(email: "email3@gmail.com", password: "password9", link: "www.naver.com"),
-        Credential(email: "email3@gmail.com", password: "password10", link: "www.naver.com")
-    ]
-    
-    var filteredCredentials: [Credential] {
-        let lowercasedSearchText = searchText.lowercased()
-        if searchText.isEmpty {
-            return credentials
-        } else {
-            return credentials.filter {
-                $0.email.lowercased().contains(lowercasedSearchText) ||
-                $0.password.lowercased().contains(lowercasedSearchText)
-                    ||
-                $0.link.lowercased().contains(lowercasedSearchText)
-            }
-        }
-    }
     
     var body: some View {
         NavigationView {

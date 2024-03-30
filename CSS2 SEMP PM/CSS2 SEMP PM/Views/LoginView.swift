@@ -41,6 +41,7 @@ struct LoginView: View {
                         if showLoginScreen == false{
                             errorInput = 3
                         }
+                        password = ""
                     }
                     .font(.system(size: 28))
                     .foregroundColor(.white.opacity(0.9))

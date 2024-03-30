@@ -40,9 +40,12 @@ struct CreateMKeyView: View {
                     .border(.red.opacity(0.4), width: CGFloat(errorInput))
                 Button("Login") {
                     showMainPage = viewModel.matchPasswords(password: password, confirmPassword: confirmPassword)
+                    password = ""
+                    confirmPassword = ""
                     if showMainPage == false {
                         errorInput = 3
                     }
+                    
                 }
                 .font(.system(size: 28))
                 .foregroundColor(.white.opacity(0.9))
