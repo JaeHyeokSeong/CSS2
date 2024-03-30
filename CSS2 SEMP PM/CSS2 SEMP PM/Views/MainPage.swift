@@ -34,7 +34,7 @@ struct MainPage: View {
                 Spacer()
                 
                 List(filteredCredentials) { credential in
-                    NavigationLink(destination: DetailView().environmentObject(viewModel)) {
+                    NavigationLink(destination: DetailView(credentials: credential).environmentObject(viewModel)) {
                         VStack(alignment: .leading) {
                             Text("Email: \(credential.email)")
                             Text("Password: \(credential.password)")

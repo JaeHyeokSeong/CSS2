@@ -7,13 +7,19 @@
 
 import SwiftUI
 
+
+
 struct DetailView: View {
     @EnvironmentObject var viewModel: ViewModel
+    var credentials: Credentials
+    
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        Text("Email: \(credentials.email)")
+        Text("Password: \(credentials.password)")
+        Text("Link: \(credentials.siteAddress ?? "")")
     }
 }
 
-#Preview {
-    DetailView().environmentObject(ViewModel())
-}
+//#Preview {
+//    DetailView(credentials: ).environmentObject(ViewModel())
+//}
