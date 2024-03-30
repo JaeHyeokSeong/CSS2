@@ -53,7 +53,8 @@ struct AddCredentialView: View {
                         }
                         Section {
                             Button("Add") {
-                                //credentials.append(credential) //need to check if all fields are filled.
+                                viewModel.credentials.append(credential) //need to check if all fields are filled.
+                                viewModel.saveCredentials()
                                 isComplete = true
                             }
                             .frame(maxWidth: .infinity, alignment: .center)
