@@ -3,9 +3,16 @@
 <h1>Members</h1>
 <ul>
 <li>John Underwood</li>
-<li>Saadman Bin Nahid</li>
+<li>Saadman Bin Nahid - 14224859</li>
 <li>Jae Hyeok Seong</li>
 <li>Aljonn Santos - 24661338</li>
 <li>Terence Tran</li>
 
+
+<h1>Version Number</h1>
+<li>John Underwood</li>
+<li>Saadman Bin Nahid - v1</li>
+<li>Jae Hyeok Seong</li>
+<li>Aljonn Santos</li>
+<li>Terence Tran</li>
 </ul>
