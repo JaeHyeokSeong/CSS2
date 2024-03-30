@@ -7,8 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		35404C152BB7A2D1005C030A /* ViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35404C142BB7A2D1005C030A /* ViewModel.swift */; };
+		35404C172BB7A372005C030A /* Login.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35404C162BB7A372005C030A /* Login.swift */; };
 		355D2DC12BAE9E30006B37D2 /* CSS2_SEMP_PMApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 355D2DC02BAE9E30006B37D2 /* CSS2_SEMP_PMApp.swift */; };
-		355D2DC32BAE9E30006B37D2 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 355D2DC22BAE9E30006B37D2 /* ContentView.swift */; };
 		355D2DC52BAE9E30006B37D2 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 355D2DC42BAE9E30006B37D2 /* Assets.xcassets */; };
 		355D2DC82BAE9E30006B37D2 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 355D2DC72BAE9E30006B37D2 /* Preview Assets.xcassets */; };
 		355D2DEB2BAEA8FF006B37D2 /* OpenAppView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 355D2DEA2BAEA8FF006B37D2 /* OpenAppView.swift */; };
@@ -37,9 +38,10 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		35404C142BB7A2D1005C030A /* ViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewModel.swift; sourceTree = "<group>"; };
+		35404C162BB7A372005C030A /* Login.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Login.swift; sourceTree = "<group>"; };
 		355D2DBD2BAE9E30006B37D2 /* CSS2 SEMP PM.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "CSS2 SEMP PM.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		355D2DC02BAE9E30006B37D2 /* CSS2_SEMP_PMApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CSS2_SEMP_PMApp.swift; sourceTree = "<group>"; };
-		355D2DC22BAE9E30006B37D2 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		355D2DC42BAE9E30006B37D2 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		355D2DC72BAE9E30006B37D2 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		355D2DCD2BAE9E31006B37D2 /* CSS2 SEMP PMTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "CSS2 SEMP PMTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -77,6 +79,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		35404C132BB7A1DE005C030A /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				35404C142BB7A2D1005C030A /* ViewModel.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
 		355D2DB42BAE9E30006B37D2 = {
 			isa = PBXGroup;
 			children = (
@@ -98,9 +108,9 @@
 		355D2DBF2BAE9E30006B37D2 /* CSS2 SEMP PM */ = {
 			isa = PBXGroup;
 			children = (
-				520EF73A2BB44B3900AD0B02 /* ViewModel */,
-				52F47C762BB2BC1000073E93 /* Model */,
 				355D2DC02BAE9E30006B37D2 /* CSS2_SEMP_PMApp.swift */,
+				35404C132BB7A1DE005C030A /* ViewModel */,
+				52F47C762BB2BC1000073E93 /* Model */,
 				52F47C732BB2BBA900073E93 /* Views */,
 				355D2DC42BAE9E30006B37D2 /* Assets.xcassets */,
 				355D2DC62BAE9E30006B37D2 /* Preview Content */,
@@ -116,17 +126,9 @@
 			path = "Preview Content";
 			sourceTree = "<group>";
 		};
-		520EF73A2BB44B3900AD0B02 /* ViewModel */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = ViewModel;
-			sourceTree = "<group>";
-		};
 		52F47C732BB2BBA900073E93 /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				355D2DC22BAE9E30006B37D2 /* ContentView.swift */,
 				355D2DEC2BAFC8EB006B37D2 /* MainPage.swift */,
 				355D2DEA2BAEA8FF006B37D2 /* OpenAppView.swift */,
 				357655102BB2CA1700F5087A /* CreateMKeyView.swift */,
@@ -140,6 +142,7 @@
 			isa = PBXGroup;
 			children = (
 				52F47C772BB2BEC200073E93 /* Credentials.swift */,
+				35404C162BB7A372005C030A /* Login.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -275,10 +278,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				357655112BB2CA1700F5087A /* LoginView.swift in Sources */,
+				35404C172BB7A372005C030A /* Login.swift in Sources */,
+				35404C152BB7A2D1005C030A /* ViewModel.swift in Sources */,
 				52F47C7E2BB2CDB800073E93 /* AddCredentialView.swift in Sources */,
 				355D2DEB2BAEA8FF006B37D2 /* OpenAppView.swift in Sources */,
 				357655122BB2CA1700F5087A /* CreateMKeyView.swift in Sources */,
-				355D2DC32BAE9E30006B37D2 /* ContentView.swift in Sources */,
 				52F47C782BB2BEC200073E93 /* Credentials.swift in Sources */,
 				355D2DC12BAE9E30006B37D2 /* CSS2_SEMP_PMApp.swift in Sources */,
 				355D2DED2BAFC8EB006B37D2 /* MainPage.swift in Sources */,

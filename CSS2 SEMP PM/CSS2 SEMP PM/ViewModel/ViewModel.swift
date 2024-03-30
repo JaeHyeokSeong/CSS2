@@ -6,3 +6,7 @@
 //
 
 import Foundation
+
+class ViewModel: ObservableObject {
+    @Published private var login = Login(masterPassword: "")
+}

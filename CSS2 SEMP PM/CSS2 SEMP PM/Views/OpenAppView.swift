@@ -8,13 +8,14 @@
 import SwiftUI
 
 struct OpenAppView: View {
+    @EnvironmentObject var viewModel: ViewModel
     @State private var isActive = false
     @State private var size = 0.7
     @State private var opacity = 0.3
     
     var body: some View {
         if isActive {
-            CreateMKeyView()
+            CreateMKeyView().environmentObject(viewModel)
         }
         else {
             VStack {
@@ -48,5 +49,5 @@ struct OpenAppView: View {
 }
 
 #Preview {
-    OpenAppView()
+    OpenAppView().environmentObject(ViewModel())
 }

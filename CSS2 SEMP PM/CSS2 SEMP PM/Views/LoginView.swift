@@ -9,6 +9,7 @@ import SwiftUI
 import LocalAuthentication
 
 struct LoginView: View {
+    @EnvironmentObject var viewModel: ViewModel
     @State private var username = ""
     @State private var password = ""
     @State private var errorInput = 0
@@ -59,7 +60,7 @@ struct LoginView: View {
                     .font(.system(size: 40))
                      
                     
-                    NavigationLink(destination: MainPage(), isActive: $showLoginScreen) {
+                    NavigationLink(destination: MainPage().environmentObject(viewModel), isActive: $showLoginScreen) {
                     }
                 }
             }
@@ -100,5 +101,5 @@ struct LoginView: View {
 }
 
 #Preview {
-    LoginView()
+    LoginView().environmentObject(ViewModel())
 }

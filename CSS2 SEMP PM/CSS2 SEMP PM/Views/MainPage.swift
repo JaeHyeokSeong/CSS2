@@ -15,6 +15,7 @@ struct Credential: Identifiable {
 }
 
 struct MainPage: View {
+    @EnvironmentObject var viewModel: ViewModel
     @State private var searchText: String = ""
     @State private var showingAddCredentialView = false
     
@@ -86,7 +87,7 @@ struct MainPage: View {
                 }
             )
             .sheet(isPresented: $showingAddCredentialView) {
-                AddCredentialView()
+                AddCredentialView().environmentObject(viewModel)
             }
         }
     }
@@ -107,7 +108,7 @@ struct DetailView: View {
 }
 
 #Preview {
-    MainPage()
+    MainPage().environmentObject(ViewModel())
 }
 
 

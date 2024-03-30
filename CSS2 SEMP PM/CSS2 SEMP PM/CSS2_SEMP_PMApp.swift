@@ -9,9 +9,10 @@ import SwiftUI
 
 @main
 struct CSS2_SEMP_PMApp: App {
+    @StateObject private var viewModel = ViewModel()
     var body: some Scene {
         WindowGroup {
-            OpenAppView()
+            OpenAppView().environmentObject(viewModel)
         }
     }
 }

@@ -6,3 +6,7 @@
 //
 
 import Foundation
+
+struct Login {
+    var masterPassword: String
+}
