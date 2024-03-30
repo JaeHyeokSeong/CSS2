@@ -41,10 +41,7 @@ class ViewModel: ObservableObject {
             }
         }
         
-        let halfIndex = passwordChars.count / 2
-        let firstHalf = passwordChars[0..<halfIndex].joined()
-        let secondHalf = passwordChars[halfIndex...].joined()
-        generatedPassword = "(\(firstHalf))-(\(secondHalf))"
+        generatedPassword = passwordChars.joined()
         usedLanguages = Array(usedLangDescriptions).sorted()
     }
     
