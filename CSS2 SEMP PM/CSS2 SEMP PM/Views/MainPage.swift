@@ -83,7 +83,7 @@ struct MainPage: View {
                     Spacer()
                     
                     List(filteredCredentials) { credential in
-                        NavigationLink(destination: DetailView(credential: credential)) {
+                        NavigationLink(destination: DetailView().environmentObject(viewModel)) {
                             VStack(alignment: .leading) {
                                 Text("Email: \(credential.email)")
                                 Text("Password: \(credential.password)")
@@ -117,20 +117,6 @@ struct MainPage: View {
         func updateFilteredCredentials() {
             filteredCredentials = viewModel.filteredCredentials(searchText: searchText)
         }
-}
-
-
-struct DetailView: View {
-    var credential: Credentials
-    
-    var body: some View {
-        VStack {
-            Text("Email: \(credential.email)")
-            Text("Password: \(credential.password)")
-            Text("Link: \(credential.siteAddress)")
-        }
-        .navigationBarTitle("Detail")
-    }
 }
 
 #Preview {
