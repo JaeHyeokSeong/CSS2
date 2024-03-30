@@ -9,41 +9,85 @@ import Foundation
 import LocalAuthentication
 
 class ViewModel: ObservableObject {
-    @Published var login = Login(masterPassword: "")
+    @Published var login: [Login] = []
     
     init() {
-        loadMasterPassword()
+        prepareMasterKeyFile()
+        loadLogins()
     }
     
-    func loadMasterPassword() {
-        let masterKeys: [Login] = load("masterkey.json")
-        if let firstMasterKey = masterKeys.first {
-            login.masterPassword = firstMasterKey.masterPassword
+    private func getDocumentsDirectory() -> URL {
+        FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first!
+    }
+    
+    private func prepareMasterKeyFile() {
+        let fileManager = FileManager.default
+        let documentsDirectory = getDocumentsDirectory()
+        let masterKeyFileURL = documentsDirectory.appendingPathComponent("masterkey.json")
+        
+        if !fileManager.fileExists(atPath: masterKeyFileURL.path) {
+            if let bundleURL = Bundle.main.url(forResource: "masterkey", withExtension: "json") {
+                do {
+                    try fileManager.copyItem(at: bundleURL, to: masterKeyFileURL)
+                } catch {
+                    print("Error copying masterkey file from bundle to documents directory: \(error)")
+                }
+            } else {
+                print("masterkey.json is not found in the main bundle.")
+                // Optionally create a new masterkey.json file with default values here if needed.
+            }
+        }
+    }
+    
+    func loadLogins() {
+        let fileURL = getDocumentsDirectory().appendingPathComponent("masterkey.json")
+        do {
+            let data = try Data(contentsOf: fileURL)
+            self.login = try JSONDecoder().decode([Login].self, from: data)
+        } catch {
+            print("Error loading logins: \(error)")
+        }
+    }
+
+    func updateLogin(id: String, newMasterPassword: String) {
+        if let index = login.firstIndex(where: { $0.id == id }) {
+            login[index].masterPassword = newMasterPassword
+            print("Updated login: \(login[index])")
+            saveLogins()
+        }
+    }
+    
+    func saveLogins() {
+        let fileURL = getDocumentsDirectory().appendingPathComponent("masterkey.json")
+        
+        do {
+            let data = try JSONEncoder().encode(login)
+            try data.write(to: fileURL, options: .atomic)
+            print("Logins saved successfully.")
+        } catch {
+            print("Failed to save logins: \(error)")
         }
     }
     
     func matchPasswords(password: String, confirmPassword: String) -> Bool {
-        if password == "" || confirmPassword == "" {
+        if password.isEmpty || confirmPassword.isEmpty {
             return false
-        }
-        else if password == confirmPassword {
-            login.masterPassword = password
+        } else if password == confirmPassword {
+            // Assuming the first login is the one to update
+            // You may need to adjust this logic based on your app's requirements
+            if let firstLoginId = login.first?.id {
+                updateLogin(id: firstLoginId, newMasterPassword: password)
+            }
             return true
         }
         return false
     }
     
     func authUser(password: String) -> Bool {
-        // Implement database connection
-        
-        // testing purposes
-        if password == login.masterPassword {
-            //showLoginScreen = true
+        if let masterPassword = login.first?.masterPassword, password == masterPassword {
             return true
-        }
-        else {
+        } else {
             return false
-            //errorInput = 3
         }
     }
 
@@ -60,7 +104,7 @@ class ViewModel: ObservableObject {
                 }
             }
         } else {
-            completion(false) // Biometrics not available or configured
+            completion(false)
         }
     }
     

@@ -58,7 +58,7 @@ var body: some View {
                                 }
                                 Section {
                                     Button("Add") {
-                                        credentials.append(credential) //need to check if all fields are filled.
+                                        //credentials.append(credential) //need to check if all fields are filled.
                                         isComplete = true
                                     }
                                     .frame(maxWidth: .infinity, alignment: .center)

@@ -7,6 +7,7 @@
 
 import Foundation
 
-struct Login: Decodable {
+struct Login: Codable, Identifiable {
+    var id: String
     var masterPassword: String
 }
