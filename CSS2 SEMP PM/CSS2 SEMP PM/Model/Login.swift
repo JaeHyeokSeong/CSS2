@@ -7,6 +7,6 @@
 
 import Foundation
 
-struct Login {
+struct Login: Decodable {
     var masterPassword: String
 }

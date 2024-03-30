@@ -19,7 +19,6 @@
 		52F47C782BB2BEC200073E93 /* Credentials.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52F47C772BB2BEC200073E93 /* Credentials.swift */; };
 		52F47C7E2BB2CDB800073E93 /* AddCredentialView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52F47C7D2BB2CDB800073E93 /* AddCredentialView.swift */; };
 		88CA4AC42BB7BD54006D0D81 /* credentials.json in Resources */ = {isa = PBXBuildFile; fileRef = 88CA4AC32BB7BD54006D0D81 /* credentials.json */; };
-		88CA4AC62BB7C125006D0D81 /* Model Data.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88CA4AC52BB7C125006D0D81 /* Model Data.swift */; };
 		8CE7D6622BB7B078000CCF39 /* masterkey.json in Resources */ = {isa = PBXBuildFile; fileRef = 8CE7D6612BB7B078000CCF39 /* masterkey.json */; };
 /* End PBXBuildFile section */
 
@@ -56,7 +55,6 @@
 		52F47C772BB2BEC200073E93 /* Credentials.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Credentials.swift; sourceTree = "<group>"; };
 		52F47C7D2BB2CDB800073E93 /* AddCredentialView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddCredentialView.swift; sourceTree = "<group>"; };
 		88CA4AC32BB7BD54006D0D81 /* credentials.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = credentials.json; sourceTree = "<group>"; };
-		88CA4AC52BB7C125006D0D81 /* Model Data.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Model Data.swift"; sourceTree = "<group>"; };
 		8CE7D6612BB7B078000CCF39 /* masterkey.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = masterkey.json; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -150,7 +148,6 @@
 			children = (
 				52F47C772BB2BEC200073E93 /* Credentials.swift */,
 				35404C162BB7A372005C030A /* Login.swift */,
-				88CA4AC52BB7C125006D0D81 /* Model Data.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -302,7 +299,6 @@
 				52F47C7E2BB2CDB800073E93 /* AddCredentialView.swift in Sources */,
 				355D2DEB2BAEA8FF006B37D2 /* OpenAppView.swift in Sources */,
 				357655122BB2CA1700F5087A /* CreateMKeyView.swift in Sources */,
-				88CA4AC62BB7C125006D0D81 /* Model Data.swift in Sources */,
 				52F47C782BB2BEC200073E93 /* Credentials.swift in Sources */,
 				355D2DC12BAE9E30006B37D2 /* CSS2_SEMP_PMApp.swift in Sources */,
 				355D2DED2BAFC8EB006B37D2 /* MainPage.swift in Sources */,

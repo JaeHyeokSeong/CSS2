@@ -11,6 +11,17 @@ import LocalAuthentication
 class ViewModel: ObservableObject {
     @Published var login = Login(masterPassword: "")
     
+    init() {
+        loadMasterPassword()
+    }
+    
+    func loadMasterPassword() {
+        let masterKeys: [Login] = load("masterkey.json")
+        if let firstMasterKey = masterKeys.first {
+            login.masterPassword = firstMasterKey.masterPassword
+        }
+    }
+    
     func matchPasswords(password: String, confirmPassword: String) -> Bool {
         if password == "" || confirmPassword == "" {
             return false
@@ -50,6 +61,27 @@ class ViewModel: ObservableObject {
             }
         } else {
             completion(false) // Biometrics not available or configured
+        }
+    }
+    
+    func load<T: Decodable>(_ filename: String) -> T {
+        let data: Data
+        
+        guard let file = Bundle.main.url(forResource: filename, withExtension: nil)
+        else{
+            fatalError("Couldn't find \(filename) in main bundle.")
+        }
+        
+        do{
+            data = try Data(contentsOf: file)
+        } catch{
+            fatalError("Couldn't load \(filename) from main bundle: \n\(error)")
+        }
+        do{
+            let decoder = JSONDecoder()
+            return try decoder.decode(T.self, from: data)
+        } catch {
+            fatalError("Couldn't parse \(filename) as \(T.self):\n\(error)")
         }
     }
 }
