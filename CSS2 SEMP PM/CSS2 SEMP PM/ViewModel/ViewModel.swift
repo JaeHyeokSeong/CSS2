@@ -18,16 +18,20 @@ class ViewModel: ObservableObject {
         loadLogins()
     }
     
-    private func filteredCredentials(searchText: String) -> [Credentials] {
+    func filteredCredentials(searchText: String) -> [Credentials] {
         let lowercasedSearchText = searchText.lowercased()
         if searchText.isEmpty {
             return credentials
         } else {
-            return credentials.filter {
-                $0.email.lowercased().contains(lowercasedSearchText) ||
-                $0.password.lowercased().contains(lowercasedSearchText)
-                    ||
-                $0.link.lowercased().contains(lowercasedSearchText)
+            return credentials.filter { credential in
+                if let siteAddress = credential.siteAddress {
+                    let emailMatch = credential.email.lowercased().contains(lowercasedSearchText)
+                    let passwordMatch = credential.password.lowercased().contains(lowercasedSearchText)
+                    let linkMatch = siteAddress.lowercased().contains(lowercasedSearchText)
+                    return emailMatch || passwordMatch || linkMatch
+                } else {
+                    return false // Handle nil _siteAddress as needed
+                }
             }
         }
     }
