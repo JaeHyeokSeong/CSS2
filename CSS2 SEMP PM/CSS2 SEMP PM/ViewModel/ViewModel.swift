@@ -84,7 +84,7 @@ class ViewModel: ObservableObject {
     }
     
     func authUser(password: String) -> Bool {
-        if let masterPassword = login.first?.masterPassword, password == masterPassword {
+        if password == login.first?.masterPassword {
             return true
         } else {
             return false

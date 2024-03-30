@@ -49,7 +49,7 @@ struct CreateMKeyView: View {
                 .frame(width: 100, height: 30)
                 .background(Color.black.opacity(0.9))
                 .cornerRadius(10)
-                NavigationLink(destination: MainPage().environmentObject(viewModel), isActive: $showMainPage) {
+                NavigationLink(destination: LoginView().environmentObject(viewModel), isActive: $showMainPage) {
                 }
             }
         }

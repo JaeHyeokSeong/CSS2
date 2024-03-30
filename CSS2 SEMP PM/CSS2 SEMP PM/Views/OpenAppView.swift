@@ -15,7 +15,7 @@ struct OpenAppView: View {
     
     var body: some View {
         if isActive {
-            if viewModel.login.first?.masterPassword == "" {
+            if viewModel.login.first?.masterPassword == nil {
                 CreateMKeyView().environmentObject(viewModel)
             }
             else {
