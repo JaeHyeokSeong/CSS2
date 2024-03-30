@@ -1,4 +1,4 @@
-#v1.5
+#v1.6
 import random
 import string
 
@@ -8,13 +8,13 @@ languages = [
     (0x003A, 0x0040, 'Symbols (Subset 2)'),  # Symbols : ; < = > ? @
     (0x005B, 0x0060, 'Symbols (Subset 3)'),  # Symbols [ \ ] ^ _ `
     (0x007B, 0x007E, 'Symbols (Subset 4)'),  # Symbols { | } ~
-    (0x0041, 0x005A, 'English (Uppercase)'),  # Basic Latin uppercase A-Z
-    (0x0061, 0x007A, 'English (Lowercase)'),  # Basic Latin lowercase a-z
+    (0x0041, 0x005A, 'English (Uppercase)'),
+    (0x0061, 0x007A, 'English (Lowercase)'),
     (0x3040, 0x309F, 'Japanese'),
     (0x4E00, 0x9FFF, 'Chinese'),
     (0x0410, 0x044F, 'Russian'),
     (0x0980, 0x09FF, 'Bengali'),
-    (0xAC00, 0xD7AF, 'Korean'),
+    (0xAC00, 0xD7AF, 'Korean (Hangul)'),
 ]
 
 def generate_random_password(total_length=32):
@@ -24,22 +24,16 @@ def generate_random_password(total_length=32):
     elif total_length > 64:
         total_length = 64
 
-    chars_to_generate = total_length - 4
-
     password_chars = []
     used_languages = set()
 
-    for _ in range(chars_to_generate):
+    for _ in range(total_length):
         char_range = random.choice(languages)
         char_code = random.randint(char_range[0], char_range[1])
         password_chars.append(chr(char_code))
         used_languages.add(char_range[2])
 
-    half_index = len(password_chars) // 2
-    first_half = ''.join(password_chars[:half_index])
-    second_half = ''.join(password_chars[half_index:])
-
-    password = f"({first_half})-({second_half})"
+    password = ''.join(password_chars)
 
     return password, used_languages
 
