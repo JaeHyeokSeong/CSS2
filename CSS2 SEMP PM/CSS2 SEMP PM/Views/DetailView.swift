@@ -7,11 +7,13 @@
 
 import SwiftUI
 
+var exampleCredentials: Credentials = Credentials(email: "", password: "", siteTitle: "", siteAddress: nil, healthStatus: 0, breachedStatus: 0, timeToChange: 30, notes: nil, encryptionMethod: "")
 
 
 struct DetailView: View {
     @EnvironmentObject var viewModel: ViewModel
     var credentials: Credentials
+
     
     var body: some View {
         Text("Email: \(credentials.email)")
@@ -20,6 +22,6 @@ struct DetailView: View {
     }
 }
 
-//#Preview {
-//    DetailView(credentials: ).environmentObject(ViewModel())
-//}
+#Preview {
+    DetailView(credentials: exampleCredentials).environmentObject(ViewModel())
+}
