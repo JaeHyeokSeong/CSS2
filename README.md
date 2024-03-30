@@ -7,11 +7,12 @@
 <li>Jae Hyeok Seong</li>
 <li>Aljonn Santos - 24661338</li>
 <li>Terence Tran</li>
-
+</ul>
 
 <h1>Version Number</h1>
+<ul>
 <li>John Underwood</li>
-<li>Saadman Bin Nahid - v1</li>
+<li>Saadman Bin Nahid - v1.2</li>
 <li>Jae Hyeok Seong</li>
 <li>Aljonn Santos</li>
 <li>Terence Tran</li>
