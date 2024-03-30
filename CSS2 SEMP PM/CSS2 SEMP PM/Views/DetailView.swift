@@ -22,15 +22,12 @@ struct DetailView: View {
             VStack {
                 HStack {
                  
-                    Button("Done") {
-                        isComplete = true
+                    if(!isEditing){
+                        Button("Done") {
+                            isComplete = true
+                        }
                     }
-    
-                    .navigationDestination(isPresented: $isComplete){
-                        MainPage().environmentObject(viewModel)
-//                            .navigationBarBackButtonHidden()
-                    }
-                        
+                    
                     
                     Spacer()
                     Image(systemName: "hare.fill")
@@ -111,7 +108,7 @@ struct DetailView: View {
                                 .foregroundColor(.red)
                                 .navigationDestination(isPresented: $isComplete){
                                     MainPage().environmentObject(viewModel)
-                                        .navigationBarBackButtonHidden()
+                                        .navigationBarHidden(true)
                             }
                         }
                     }
