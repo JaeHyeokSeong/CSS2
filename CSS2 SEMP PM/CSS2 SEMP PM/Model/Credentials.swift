@@ -7,10 +7,10 @@
 
 import Foundation
 
-var credentials: [Credentials] = [] //global variable to hold array of credentials. Need to be encrypted??
+//var credentials: [Credentials] = [] //global variable to hold array of credentials. Need to be encrypted??
 
 
-struct Credentials{
+struct Credentials: Hashable, Codable {
     private var _email: String
     private var _password: String
     private var _siteTitle: String
