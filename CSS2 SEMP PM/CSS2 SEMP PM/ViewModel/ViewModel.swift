@@ -32,7 +32,7 @@ class ViewModel: ObservableObject {
                     let linkMatch = siteAddress.lowercased().contains(lowercasedSearchText)
                     return emailMatch || passwordMatch || linkMatch
                 } else {
-                    return false // Handle nil _siteAddress as needed
+                    return false
                 }
             }
         }
@@ -70,7 +70,6 @@ class ViewModel: ObservableObject {
                 }
             } else {
                 print("masterkey.json is not found in the main bundle.")
-                // Optionally create a new masterkey.json file with default values here if needed.
             }
         }
     }
@@ -81,7 +80,6 @@ class ViewModel: ObservableObject {
         let credentialsFileURL = documentsDirectory.appendingPathComponent("credentials.json")
         
         if !fileManager.fileExists(atPath: credentialsFileURL.path) {
-            // The file does not exist, let's create a new one with empty credentials array
             let emptyCredentials: [Credentials] = []
             if let data = try? JSONEncoder().encode(emptyCredentials) {
                 do {
@@ -125,11 +123,9 @@ class ViewModel: ObservableObject {
     
     func updateCredential(id: String, updatedCredential: Credentials) {
         if let index = credentials.firstIndex(where: { $0.id == id }) {
-            // Update the found credential in the array
             credentials[index] = updatedCredential
             
             print("Updated credential: \(credentials[index])")
-            // Save the updated credentials array back to the JSON file
             saveCredentials()
         } else {
             print("Credential with ID \(id) not found.")
@@ -165,8 +161,6 @@ class ViewModel: ObservableObject {
         if password.isEmpty || confirmPassword.isEmpty {
             return false
         } else if password == confirmPassword {
-            // Assuming the first login is the one to update
-            // You may need to adjust this logic based on your app's requirements
             if let firstLoginId = login.first?.id {
                 updateLogin(id: firstLoginId, newMasterPassword: password)
             }
