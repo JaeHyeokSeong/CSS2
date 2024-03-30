@@ -15,7 +15,12 @@ struct OpenAppView: View {
     
     var body: some View {
         if isActive {
-            CreateMKeyView().environmentObject(viewModel)
+            if viewModel.login.masterPassword == "" {
+                CreateMKeyView().environmentObject(viewModel)
+            }
+            else {
+                LoginView().environmentObject(viewModel)
+            }
         }
         else {
             VStack {

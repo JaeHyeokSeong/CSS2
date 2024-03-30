@@ -39,7 +39,10 @@ struct CreateMKeyView: View {
                     .cornerRadius(15)
                     .border(.red.opacity(0.4), width: CGFloat(errorInput))
                 Button("Login") {
-                    matchPasswords()
+                    showMainPage = viewModel.matchPasswords(password: password, confirmPassword: confirmPassword)
+                    if showMainPage == false {
+                        errorInput = 3
+                    }
                 }
                 .font(.system(size: 28))
                 .foregroundColor(.white.opacity(0.9))
@@ -51,17 +54,6 @@ struct CreateMKeyView: View {
             }
         }
         .navigationBarHidden(true)
-    }
-    func matchPasswords() {
-        if password == "" || confirmPassword == "" {
-            errorInput = 3
-        }
-        else if password == confirmPassword {
-            showMainPage = true
-        }
-        else {
-            errorInput = 3
-        }
     }
 }
 
