@@ -12,6 +12,7 @@ class ViewModel: ObservableObject {
     @Published var login: [Login] = []
     
     init() {
+//        deleteMasterKeyFile()
         prepareMasterKeyFile()
         loadLogins()
     }
@@ -19,6 +20,20 @@ class ViewModel: ObservableObject {
     private func getDocumentsDirectory() -> URL {
         FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first!
     }
+    
+    func deleteMasterKeyFile() {
+        let fileManager = FileManager.default
+        let documentsDirectory = getDocumentsDirectory()
+        let masterKeyFileURL = documentsDirectory.appendingPathComponent("masterkey.json")
+        
+        do {
+            try fileManager.removeItem(at: masterKeyFileURL)
+            print("masterkey.json file deleted successfully.")
+        } catch {
+            print("Error deleting masterkey.json file: \(error)")
+        }
+    }
+    
     
     private func prepareMasterKeyFile() {
         let fileManager = FileManager.default
