@@ -16,6 +16,8 @@ class ViewModel: ObservableObject {
         //deleteMasterKeyFile()
         prepareMasterKeyFile()
         loadLogins()
+        prepareCredentialsFile()
+        loadCredentials()
     }
     
     func filteredCredentials(searchText: String) -> [Credentials] {
@@ -35,7 +37,6 @@ class ViewModel: ObservableObject {
             }
         }
     }
-    
     
     private func getDocumentsDirectory() -> URL {
         FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first!
@@ -74,6 +75,25 @@ class ViewModel: ObservableObject {
         }
     }
     
+    private func prepareCredentialsFile() {
+        let fileManager = FileManager.default
+        let documentsDirectory = getDocumentsDirectory()
+        let credentialsFileURL = documentsDirectory.appendingPathComponent("credentials.json")
+        
+        if !fileManager.fileExists(atPath: credentialsFileURL.path) {
+            // The file does not exist, let's create a new one with empty credentials array
+            let emptyCredentials: [Credentials] = []
+            if let data = try? JSONEncoder().encode(emptyCredentials) {
+                do {
+                    try data.write(to: credentialsFileURL, options: .atomic)
+                    print("credentials.json was successfully created with initial data.")
+                } catch {
+                    print("Error creating credentials.json: \(error)")
+                }
+            }
+        }
+    }
+    
     func loadLogins() {
         let fileURL = getDocumentsDirectory().appendingPathComponent("masterkey.json")
         do {
@@ -83,12 +103,36 @@ class ViewModel: ObservableObject {
             print("Error loading logins: \(error)")
         }
     }
+    
+    func loadCredentials() {
+        let fileURL = getDocumentsDirectory().appendingPathComponent("credentials.json")
+        do {
+            let data = try Data(contentsOf: fileURL)
+            self.credentials = try JSONDecoder().decode([Credentials].self, from: data)
+        } catch {
+            print("Error loading credentials: \(error)")
+        }
+    }
+
 
     func updateLogin(id: String, newMasterPassword: String) {
         if let index = login.firstIndex(where: { $0.id == id }) {
             login[index].masterPassword = newMasterPassword
             print("Updated login: \(login[index])")
             saveLogins()
+        }
+    }
+    
+    func updateCredential(id: String, updatedCredential: Credentials) {
+        if let index = credentials.firstIndex(where: { $0.id == id }) {
+            // Update the found credential in the array
+            credentials[index] = updatedCredential
+            
+            print("Updated credential: \(credentials[index])")
+            // Save the updated credentials array back to the JSON file
+            saveCredentials()
+        } else {
+            print("Credential with ID \(id) not found.")
         }
     }
     
@@ -103,6 +147,19 @@ class ViewModel: ObservableObject {
             print("Failed to save logins: \(error)")
         }
     }
+    
+    func saveCredentials() {
+        let fileURL = getDocumentsDirectory().appendingPathComponent("credentials.json")
+        
+        do {
+            let data = try JSONEncoder().encode(credentials)
+            try data.write(to: fileURL, options: .atomic)
+            print("Credentials saved successfully.")
+        } catch {
+            print("Failed to save credentials: \(error)")
+        }
+    }
+
     
     func matchPasswords(password: String, confirmPassword: String) -> Bool {
         if password.isEmpty || confirmPassword.isEmpty {
