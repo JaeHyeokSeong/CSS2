@@ -48,7 +48,7 @@ struct LoginView: View {
                     .frame(width: 100, height: 30)
                     .background(Color.black.opacity(0.9))
                     .cornerRadius(10)
-                    
+                
                     Button {
                         viewModel.faceIDAuth{ success in
                             if success{

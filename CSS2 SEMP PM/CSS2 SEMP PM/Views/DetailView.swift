@@ -21,14 +21,11 @@ struct DetailView: View {
         NavigationStack {
             VStack {
                 HStack {
-                 
                     if(!isEditing){
                         Button("Done") {
                             isComplete = true
                         }
                     }
-                    
-                    
                     Spacer()
                     Image(systemName: "hare.fill")
                     Text("View Credentials")
@@ -106,14 +103,15 @@ struct DetailView: View {
                                 .disabled(false)
                                 .clipShape(RoundedRectangle(cornerRadius: 10))
                                 .foregroundColor(.red)
-                                .navigationDestination(isPresented: $isComplete){
-                                    MainPage().environmentObject(viewModel)
-                                        .navigationBarHidden(true)
                             }
                         }
                     }
                 }
             }
+            .navigationDestination(isPresented: $isComplete){
+                MainPage().environmentObject(viewModel)
+                    .navigationBarBackButtonHidden(true)
+                    .navigationBarHidden(false)
         }
         .navigationBarHidden(true)
     }

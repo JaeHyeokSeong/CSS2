@@ -14,7 +14,7 @@ struct MainPage: View {
     @State private var filteredCredentials: [Credentials] = []
         
     var body: some View {
-        NavigationView {
+        NavigationStack {
             VStack {
                 ZStack(alignment: .leading) {
                     RoundedRectangle(cornerRadius: 8)
@@ -40,7 +40,7 @@ struct MainPage: View {
                             Text("Password: \(credential.password)")
                             Text("Link: \(credential.siteAddress ?? "")")
                         }
-                        .padding(.vertical, 10)
+                        //.padding(.vertical, 10)
                     }
                 }
                 
