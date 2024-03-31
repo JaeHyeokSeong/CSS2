@@ -44,12 +44,15 @@ struct AddCredentialView: View {
                             Menu(encryptSelection) {
                                 Button("AES"){
                                     encryptSelection = "AES"
+                                    credential.encryptionMethod = "AES"
                                 }
                                 Button("RSA"){
                                     encryptSelection = "RSA"
+                                    credential.encryptionMethod = "RSA"
                                 }
                                 Button("SHA"){
                                     encryptSelection = "SHA"
+                                    credential.encryptionMethod = "SHA"
                                 }
                             }
                         }
