@@ -13,14 +13,8 @@ class ViewModel: ObservableObject {
     @Published var credentials: [Credentials] = []
     @Published var generatedPassword: String = ""
     @Published var usedLanguages: [String] = []
-    
-    private var languageRanges: [LanguageRange] {
-        LanguageRangeModel.shared.ranges
-    }
-    
-    private var languageOldRanges: [LanguageRange] {
-        LanguageRangeModel.shared.ranges
-    }
+    private var languageRanges: [LanguageRange] = LanguageRangeModel.shared.ranges
+    private var languageOldRanges: [LanguageRange] = LanguageRangeModel.shared.oldRanges
     
     init() {
         //deleteMasterKeyFile()
