@@ -93,7 +93,7 @@ struct MainPage: View {
                 updateFilteredCredentials()
             }
         }
-        //.navigationBarHidden(true)
+        .navigationBarBackButtonHidden()
     }
         
     func updateFilteredCredentials() {

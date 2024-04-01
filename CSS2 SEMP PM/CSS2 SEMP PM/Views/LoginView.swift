@@ -62,10 +62,11 @@ struct LoginView: View {
                         Image(systemName: "faceid")
                     }
                     .font(.system(size: 40))
-                     
                     
                     NavigationLink(destination: MainPage().environmentObject(viewModel), isActive: $showLoginScreen) {
                     }
+                    
+
                 }
             }
             .navigationBarHidden(true)
