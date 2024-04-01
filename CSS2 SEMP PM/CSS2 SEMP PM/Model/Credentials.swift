@@ -19,6 +19,8 @@ struct Credentials: Hashable, Codable, Identifiable {
     var date: Date
     var notes: String?
     var encryptionMethod: String
+    var daysCount: Int = 30
+    
     
     init(email: String, password: String, siteTitle: String, siteAddress: String?, healthStatus: Int, breachedStatus: Int, date: Date, notes: String?, encryptionMethod: String) {
         self.id = UUID().uuidString

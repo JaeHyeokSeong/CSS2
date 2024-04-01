@@ -23,7 +23,22 @@ class ViewModel: ObservableObject {
         prepareMasterKeyFile()
         loadLogins()
         prepareCredentialsFile()
+        updateAllTimer()
         loadCredentials()
+    }
+    
+    func updateAllTimer(){
+        for index in 0..<credentials.count{
+            credentials[index].daysCount = 30-daysPassed(credentials[index].date)
+        }
+        saveCredentials()
+    }
+    func daysPassed(_ date: Date) -> Int{
+        let calendar = Calendar.current
+        let currentDate = Date()
+        
+        let components = calendar.dateComponents([.day], from: date, to: currentDate)
+        return components.day ?? 0
     }
     
     func generatePassword(totalLength: Int) {
@@ -250,3 +265,5 @@ class ViewModel: ObservableObject {
         }
     }
 }
+
+

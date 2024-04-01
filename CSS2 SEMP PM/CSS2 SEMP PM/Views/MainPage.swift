@@ -66,7 +66,7 @@ struct MainPage: View {
                                 }
                             }
                             VStack{
-                                Text("\(credential.date)")
+                                Text("\(credential.daysCount)")
                                 Text("\(credential.encryptionMethod)")
                             }
                         }

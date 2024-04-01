@@ -16,6 +16,7 @@ struct DetailView: View {
     @State var isComplete = false
     @State var isEditing = false
     @State var editButton = "Edit"
+    @State var passwordChanged = false
     
     var body: some View {
         NavigationStack {
@@ -36,6 +37,9 @@ struct DetailView: View {
                             editButton = "Confirm"
                         } else if(editButton == "Confirm"){
                             editButton = "Edit"
+                            if(passwordChanged){
+                                credentials.daysCount = 30
+                            }
                             viewModel.updateCredential(id: credentials.id, updatedCredential: credentials)
                         }
                         
@@ -65,6 +69,7 @@ struct DetailView: View {
                                     Button ("GEN") {
                                         viewModel.generatePassword(totalLength: 64)
                                         credentials.password = viewModel.generatedPassword
+                                        passwordChanged = true
                                     }
                                 }
                             }
