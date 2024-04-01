@@ -12,7 +12,7 @@
 <h1>Version Number</h1>
 <ul>
 <li>John Underwood</li>
-<li>Saadman Bin Nahid - v1.6</li>
+<li>Saadman Bin Nahid - v1.7</li>
 <li>Jae Hyeok Seong</li>
 <li>Aljonn Santos</li>
 <li>Terence Tran</li>
