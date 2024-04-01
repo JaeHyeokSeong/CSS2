@@ -35,10 +35,17 @@ struct MainPage: View {
                 
                 List(filteredCredentials) { credential in
                     NavigationLink(destination: DetailView(credentials: credential).environmentObject(viewModel)) {
-                        VStack(alignment: .leading) {
-                            Text("Email: \(credential.email)")
-                            Text("Password: \(credential.password)")
-                            Text("Link: \(credential.siteAddress ?? "")")
+                        HStack() {
+                            Text("\(credential.siteTitle)")
+                            Spacer()
+                            VStack{
+                                Text("\(credential.healthStatus)")
+                                Text("\(credential.breachedStatus)")
+                            }
+                            VStack{
+                                Text("\(credential.timeToChange)")
+                                Text("\(credential.encryptionMethod)")
+                            }
                         }
                         //.padding(.vertical, 10)
                     }
