@@ -7,12 +7,14 @@
 
 import SwiftUI
 
+
 struct MainPage: View {
     @EnvironmentObject var viewModel: ViewModel
     @State private var searchText: String = ""
     @State private var showingAddCredentialView = false
     @State private var filteredCredentials: [Credentials] = []
-        
+    @State private var showLogin = false
+
     var body: some View {
         NavigationStack {
             VStack {
@@ -76,7 +78,16 @@ struct MainPage: View {
                 
             }
             .navigationBarTitle("Passwords", displayMode: .inline)
-            .navigationBarItems(trailing:
+            .navigationBarItems(leading:
+                                    Button(action:{
+                //implement
+                showLogin = true
+                
+            }){
+                Image(systemName: "chevron.left")
+                Text("Logout")
+            },
+                trailing:
                 Button(action: {
                     showingAddCredentialView = true
                 }) {
@@ -92,8 +103,13 @@ struct MainPage: View {
             .onChange(of: searchText) { _ in
                 updateFilteredCredentials()
             }
-            .navigationBarBackButtonHidden()
+            .background(
+                NavigationLink(destination: LoginView().navigationBarHidden(true), isActive: $showLogin){
+                    EmptyView()
+                }
+            )
         }
+        .navigationBarBackButtonHidden()
     }
         
     func updateFilteredCredentials() {
