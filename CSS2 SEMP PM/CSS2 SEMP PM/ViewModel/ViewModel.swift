@@ -40,6 +40,7 @@ class ViewModel: ObservableObject {
     }
     
     func generatePassword(totalLength: Int) {
+        print("new")
         let totalLength = max(32, min(totalLength, 64))
         var passwordChars: [String] = []
         var usedLangDescriptions: Set<String> = []
@@ -59,6 +60,7 @@ class ViewModel: ObservableObject {
     }
     
     func generateOldPassword(totalLength: Int) {
+        print("old")
         let totalLength = max(32, min(totalLength, 64))
         var passwordChars: [String] = []
         var usedLangDescriptions: Set<String> = []
