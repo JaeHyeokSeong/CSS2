@@ -23,8 +23,8 @@ class ViewModel: ObservableObject {
         prepareMasterKeyFile()
         loadLogins()
         prepareCredentialsFile()
-        updateAllTimer()
         loadCredentials()
+        updateAllTimer()
     }
     
     func updateAllTimer(){

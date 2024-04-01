@@ -92,8 +92,8 @@ struct MainPage: View {
             .onChange(of: searchText) { _ in
                 updateFilteredCredentials()
             }
+            .navigationBarBackButtonHidden()
         }
-        .navigationBarBackButtonHidden()
     }
         
     func updateFilteredCredentials() {
