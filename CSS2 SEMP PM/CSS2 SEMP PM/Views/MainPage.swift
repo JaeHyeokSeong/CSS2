@@ -39,8 +39,31 @@ struct MainPage: View {
                             Text("\(credential.siteTitle)")
                             Spacer()
                             VStack{
-                                Text("\(credential.healthStatus)")
-                                Text("\(credential.breachedStatus)")
+                                // healthStatus == 0 -> good
+                                // healthStatus == 1 -> normal
+                                // healthStatus == 2 -> bad
+                                if(credential.healthStatus == 0) {
+                                    Image(systemName: "checkmark.circle.fill")
+                                } else if(credential.healthStatus == 1) {
+                                    Image(systemName: "exclamationmark.circle.fill")
+                                } else if(credential.healthStatus == 2) {
+                                    Image(systemName: "xmark.circle.fill")
+                                } else {
+                                    Text("Invalid health status")
+                                }
+                                
+                                // breachedStatus has two status
+                                // 0 -> safe
+                                // 1 -> unsafe
+                                if(credential.breachedStatus == 0) {
+                                    Image(systemName: "shield.fill")
+                                        .foregroundColor(.green)
+                                } else if(credential.breachedStatus == 1) {
+                                    Image(systemName: "exclamationmark.triangle.fill")
+                                        .foregroundColor(.red)
+                                } else {
+                                    Text("Invalid breached status")
+                                }
                             }
                             VStack{
                                 Text("\(credential.date)")
