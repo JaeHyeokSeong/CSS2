@@ -66,10 +66,17 @@ struct DetailView: View {
                                     SecureField("Password", text: $credentials.password)
                                 }
                                 if(editButton == "Confirm"){
-                                    Button ("GEN") {
-                                        viewModel.generatePassword(totalLength: 64)
-                                        credentials.password = viewModel.generatedPassword
-                                        passwordChanged = true
+                                    Menu("Gen"){
+                                        Button ("NewChars") {
+                                            viewModel.generatePassword(totalLength: 64)
+                                            credentials.password = viewModel.generatedPassword
+                                            passwordChanged = true
+                                        }
+                                        Button ("OldChars") {
+                                            viewModel.generateOldPassword(totalLength: 64)
+                                            credentials.password = viewModel.generatedPassword
+                                            passwordChanged = true
+                                        }
                                     }
                                 }
                             }
