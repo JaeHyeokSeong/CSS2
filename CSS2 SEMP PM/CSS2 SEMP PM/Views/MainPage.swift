@@ -83,7 +83,7 @@ struct MainPage: View {
                     Image(systemName: "plus")
                 }
             )
-            .sheet(isPresented: $showingAddCredentialView) {
+            .navigationDestination(isPresented: $showingAddCredentialView) {
                 AddCredentialView().environmentObject(viewModel)
             }
             .onAppear {
@@ -93,7 +93,7 @@ struct MainPage: View {
                 updateFilteredCredentials()
             }
         }
-        .navigationBarHidden(true)
+        //.navigationBarHidden(true)
     }
         
     func updateFilteredCredentials() {
