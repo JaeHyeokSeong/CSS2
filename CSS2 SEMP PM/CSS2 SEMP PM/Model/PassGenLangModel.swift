@@ -28,5 +28,15 @@ struct LanguageRangeModel {
         LanguageRange(start: 0x0980, end: 0x09FF, description: "Bengali"),
         LanguageRange(start: 0xAC00, end: 0xD7AF, description: "Korean"),
     ]
+    
+    let oldRanges: [LanguageRange] = [
+        LanguageRange(start: 0x0030, end: 0x0039, description: "Numbers (0-9)"),
+        LanguageRange(start: 0x0021, end: 0x002F, description: "Symbols (Subset 1)"),
+        LanguageRange(start: 0x003A, end: 0x0040, description: "Symbols (Subset 2)"),
+        LanguageRange(start: 0x005B, end: 0x0060, description: "Symbols (Subset 3)"),
+        LanguageRange(start: 0x007B, end: 0x007E, description: "Symbols (Subset 4)"),
+        LanguageRange(start: 0x0041, end: 0x005A, description: "English (Uppercase)"),
+        LanguageRange(start: 0x0061, end: 0x007A, description: "English (Lowercase)"),
+    ]
 }
 

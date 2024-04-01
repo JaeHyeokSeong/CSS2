@@ -15,8 +15,12 @@ class ViewModel: ObservableObject {
     @Published var usedLanguages: [String] = []
     
     private var languageRanges: [LanguageRange] {
-            LanguageRangeModel.shared.ranges
-        }
+        LanguageRangeModel.shared.ranges
+    }
+    
+    private var languageOldRanges: [LanguageRange] {
+        LanguageRangeModel.shared.ranges
+    }
     
     init() {
         //deleteMasterKeyFile()
@@ -48,6 +52,25 @@ class ViewModel: ObservableObject {
         
         for _ in 0..<(totalLength - 4) {
             guard let charRange = languageRanges.randomElement() else { continue }
+            let charCode = Int.random(in: charRange.start...charRange.end)
+            if let scalar = UnicodeScalar(charCode) {
+                let char = String(Character(scalar))
+                passwordChars.append(char)
+                usedLangDescriptions.insert(charRange.description)
+            }
+        }
+        
+        generatedPassword = passwordChars.joined()
+        usedLanguages = Array(usedLangDescriptions).sorted()
+    }
+    
+    func generateOldPassword(totalLength: Int) {
+        let totalLength = max(32, min(totalLength, 64))
+        var passwordChars: [String] = []
+        var usedLangDescriptions: Set<String> = []
+        
+        for _ in 0..<(totalLength - 4) {
+            guard let charRange = languageOldRanges.randomElement() else { continue }
             let charCode = Int.random(in: charRange.start...charRange.end)
             if let scalar = UnicodeScalar(charCode) {
                 let char = String(Character(scalar))

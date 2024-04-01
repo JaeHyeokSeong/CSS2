@@ -34,8 +34,12 @@ struct AddCredentialView: View {
                                 .keyboardType(.emailAddress)
                             HStack {
                                 TextField("Password", text: $credential.password)
-                                Button ("GEN") {
+                                Button ("NewGEN") {
                                     viewModel.generatePassword(totalLength: 64)
+                                    credential.password = viewModel.generatedPassword
+                                }
+                                Button ("GEN") {
+                                    viewModel.generateOldPassword(totalLength: 64)
                                     credential.password = viewModel.generatedPassword
                                 }
                             }
