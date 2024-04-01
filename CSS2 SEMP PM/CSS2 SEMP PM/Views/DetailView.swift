@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-var exampleCredentials: Credentials = Credentials(email: "google@gmail.com", password: "1234", siteTitle: "Google", siteAddress: "google.com", healthStatus: 0, breachedStatus: 0, timeToChange: 30, notes: "4 digits", encryptionMethod: "AES")
+var exampleCredentials: Credentials = Credentials(email: "google@gmail.com", password: "1234", siteTitle: "Google", siteAddress: "google.com", healthStatus: 0, breachedStatus: 0, date: Date(), notes: "4 digits", encryptionMethod: "AES")
 
 
 struct DetailView: View {

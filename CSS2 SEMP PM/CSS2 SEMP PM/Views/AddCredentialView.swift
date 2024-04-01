@@ -9,7 +9,7 @@ import SwiftUI
 
 struct AddCredentialView: View {
     @EnvironmentObject var viewModel: ViewModel
-    @State var credential: Credentials = Credentials(email: "", password: "", siteTitle: "", siteAddress: nil, healthStatus: 0, breachedStatus: 0, timeToChange: 30, notes: nil, encryptionMethod: "")
+    @State var credential: Credentials = Credentials(email: "", password: "", siteTitle: "", siteAddress: nil, healthStatus: 0, breachedStatus: 0, date: Date(), notes: nil, encryptionMethod: "")
     @State var encryptSelection = "Select Encryption Method"
     @State var isComplete = false
     

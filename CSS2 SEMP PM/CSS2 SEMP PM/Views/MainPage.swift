@@ -43,7 +43,7 @@ struct MainPage: View {
                                 Text("\(credential.breachedStatus)")
                             }
                             VStack{
-                                Text("\(credential.timeToChange)")
+                                Text("\(credential.date)")
                                 Text("\(credential.encryptionMethod)")
                             }
                         }
