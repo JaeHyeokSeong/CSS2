@@ -20,6 +20,7 @@ class ViewModel: ObservableObject {
     
     init() {
 //        deleteMasterKeyFile()
+//        deleteCredentialsFile()
         prepareMasterKeyFile()
         loadLogins()
         prepareCredentialsFile()
@@ -207,28 +208,14 @@ class ViewModel: ObservableObject {
     
     //decrypt here
     func loadCredentials() {
-        let fileURL = getDocumentsDirectory().appendingPathComponent("credentials.json")
-        do {
-            // Step 1: Load the encrypted data from the file system
-            let encryptedData = try Data(contentsOf: fileURL)
-            print("encrypted data \(encryptedData)")
-            // Convert the encrypted Data to a base64 encoded string
-            let encryptedString = encryptedData.base64EncodedString()
-            print("encrypted String" + encryptedString)
-            // Step 2: Decrypt the base64 encoded string to get back the original JSON string
-            guard let decryptedString = decryptString(encryptedString), let decryptedData = decryptedString.data(using: .utf8) else {
-                print("Failed to decrypt credentials")
-                return
-            }
-            print("decrpyted String" + decryptedString)
-            
-            // Step 3: Decode the JSON string back into your credentials model
-            self.credentials = try JSONDecoder().decode([Credentials].self, from: decryptedData)
-            print("Credentials loaded successfully.")
-        } catch {
-            print("Error loading credentials: \(error)")
-        }
-    }
+           let fileURL = getDocumentsDirectory().appendingPathComponent("credentials.json")
+           do {
+               let data = try Data(contentsOf: fileURL)
+               self.credentials = try JSONDecoder().decode([Credentials].self, from: data)
+           } catch {
+               print("Error loading credentials: \(error)")
+           }
+       }
 
 
 
@@ -275,33 +262,16 @@ class ViewModel: ObservableObject {
     }
     //encrypt here
     func saveCredentials() {
-        let fileURL = getDocumentsDirectory().appendingPathComponent("credentials.json")
-        
-        do {
-            // Step 1: Encode your credentials to JSON Data
-            let jsonData = try JSONEncoder().encode(credentials)
-            // Convert JSON Data to String
-            guard let jsonString = String(data: jsonData, encoding: .utf8) else {
-                print("Failed to convert JSON data to String")
-                return
+            let fileURL = getDocumentsDirectory().appendingPathComponent("credentials.json")
+            
+            do {
+                let data = try JSONEncoder().encode(credentials)
+                try data.write(to: fileURL, options: .atomic)
+                print("Credentials saved successfully.")
+            } catch {
+                print("Failed to save credentials: \(error)")
             }
-            // Step 2: Encrypt the JSON String
-            guard let encryptedString = encryptString(jsonString) else {
-                print("Failed to encrypt credentials")
-                return
-            }
-            // Convert the encrypted String back to Data
-            guard let encryptedData = Data(base64Encoded: encryptedString) else {
-                print("Failed to convert encrypted string to Data")
-                return
-            }
-            // Step 3: Save the encrypted Data to the file
-            try encryptedData.write(to: fileURL, options: .atomic)
-            print("Credentials saved successfully.")
-        } catch {
-            print("Failed to save credentials: \(error)")
         }
-    }
 
 
     
