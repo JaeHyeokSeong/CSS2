@@ -206,7 +206,8 @@ class ViewModel: ObservableObject {
 
     func updateLogin(id: String, newMasterPassword: String) {
         if let index = login.firstIndex(where: { $0.id == id }) {
-            login[index].masterPassword = newMasterPassword
+            
+            login[index].masterPassword = encryptString(newMasterPassword)
             print("Updated login: \(login[index])")
             // Create Sym key
             saveLogins()
@@ -293,6 +294,33 @@ class ViewModel: ObservableObject {
             }
         } else {
             completion(false)
+        }
+    }
+    
+    func encryptString(_ string: String) -> String? {
+        guard let data = string.data(using: .utf8),
+                let symmetricKey = symmetricKeyData.flatMap({ SymmetricKey(data: $0) }) else { return nil }
+        
+        do {
+            let sealedBox = try AES.GCM.seal(data, using: symmetricKey)
+            return sealedBox.combined?.base64EncodedString()
+        } catch {
+            print("Encryption error: \(error)")
+            return nil
+        }
+    }
+        
+    func decryptString(_ encryptedString: String) -> String? {
+        guard let combinedData = Data(base64Encoded: encryptedString),
+                let sealedBox = try? AES.GCM.SealedBox(combined: combinedData),
+                let symmetricKey = symmetricKeyData.flatMap({ SymmetricKey(data: $0) }) else { return nil }
+        
+        do {
+            let decryptedData = try AES.GCM.open(sealedBox, using: symmetricKey)
+            return String(data: decryptedData, encoding: .utf8)
+        } catch {
+            print("Decryption error: \(error)")
+            return nil
         }
     }
     
