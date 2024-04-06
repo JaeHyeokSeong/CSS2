@@ -216,6 +216,7 @@ class ViewModel: ObservableObject {
            } catch {
                print("Error loading credentials: \(error)")
            }
+            assessCredentialsAndScheduleNotifications()
        }
 
 
@@ -272,6 +273,7 @@ class ViewModel: ObservableObject {
             } catch {
                 print("Failed to save credentials: \(error)")
             }
+            assessCredentialsAndScheduleNotifications()
         }
 
 
