@@ -8,6 +8,7 @@
 import Foundation
 import LocalAuthentication
 import CryptoKit
+import UserNotifications
 
 class ViewModel: ObservableObject {
     @Published var login: [Login] = []
@@ -309,6 +310,34 @@ class ViewModel: ObservableObject {
             }
         } else {
             completion(false)
+        }
+    }
+    
+    func assessCredentialsAndScheduleNotifications() {
+        for credential in credentials {
+            if credential.daysCount <= 0 {
+                scheduleNotification(for: credential, reason: "Time to change password")
+            }
+            
+            if credential.breachedStatus > 0 { // Assuming breachedStatus > 0 means breached
+                scheduleNotification(for: credential, reason: "Credential potentially breached")
+            }
+        }
+    }
+    
+    private func scheduleNotification(for credential: Credentials, reason: String) {
+        let content = UNMutableNotificationContent()
+        content.title = NSString.localizedUserNotificationString(forKey: "Attention Needed!", arguments: nil)
+        content.body = NSString.localizedUserNotificationString(forKey: "Credential for \(credential.siteTitle) \(reason).", arguments: nil)
+        content.sound = UNNotificationSound.default
+        content.categoryIdentifier = "CREDENTIAL_ALERT"
+        let trigger = UNTimeIntervalNotificationTrigger(timeInterval: 5, repeats: false)
+        let request = UNNotificationRequest(identifier: "CredentialAlert-\(credential.id)", content: content, trigger: trigger)
+        let center = UNUserNotificationCenter.current()
+        center.add(request) { (error : Error?) in
+            if let theError = error {
+                print(theError.localizedDescription)
+            }
         }
     }
     
