@@ -65,7 +65,7 @@ struct AddCredentialView: View {
                     }
                 }
             }
-            .navigationBarHidden(true)
+            //.navigationBarHidden(true)
         }
     }
 }

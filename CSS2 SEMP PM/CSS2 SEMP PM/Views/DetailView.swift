@@ -109,11 +109,12 @@ struct DetailView: View {
                                     credentials.daysCount = 0
                                 }
                                 Button ("Change Breached") {
-                                    credentials.breachedStatus = 2
+                                    credentials.breachedStatus = 1
                                 }
                             }
                         }
-                        .disabled(isEditing)
+                        .disabled(!isEditing)
+                        
                         }
                     }
                 }

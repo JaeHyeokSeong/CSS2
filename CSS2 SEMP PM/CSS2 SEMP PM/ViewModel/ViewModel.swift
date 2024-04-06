@@ -9,8 +9,9 @@ import Foundation
 import LocalAuthentication
 import CryptoKit
 import UserNotifications
+import UIKit
 
-class ViewModel: ObservableObject {
+class ViewModel: NSObject, ObservableObject, UNUserNotificationCenterDelegate {
     @Published var login: [Login] = []
     @Published var credentials: [Credentials] = []
     @Published var generatedPassword: String = ""
@@ -19,15 +20,40 @@ class ViewModel: ObservableObject {
     private var languageOldRanges: [LanguageRange] = LanguageRangeModel.shared.oldRanges
     private var symmetricKeyData: Data?
     
-    init() {
+    override init() {
+        super.init()
 //        deleteMasterKeyFile()
 //        deleteCredentialsFile()
+        configureNotifications()
         prepareMasterKeyFile()
         loadLogins()
         prepareCredentialsFile()
         loadCredentials()
         updateAllTimer()
         loadOrCreateSymmetricKey()
+        
+        
+    }
+    
+    private func configureNotifications() {
+        UNUserNotificationCenter.current().requestAuthorization(options: [.alert, .badge, .sound]) { granted, error in
+            DispatchQueue.main.async {
+                if granted {
+                    print("Notifications Permission Granted")
+                } else {
+                    print("Notifications Permission Denied")
+                }
+            }
+        }
+        UNUserNotificationCenter.current().delegate = self
+    }
+    
+    func userNotificationCenter(_ center: UNUserNotificationCenter, willPresent notification: UNNotification, withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions) -> Void) {
+        completionHandler([.alert, .sound, .badge])
+    }
+    
+    func userNotificationCenter(_ center: UNUserNotificationCenter, didReceive response: UNNotificationResponse, withCompletionHandler completionHandler: @escaping () -> Void) {
+        completionHandler()
     }
     
     private func generateAndSaveSymmetricKey() {
@@ -58,6 +84,17 @@ class ViewModel: ObservableObject {
         let fileURL = getDocumentsDirectory().appendingPathComponent(filename)
         return try? Data(contentsOf: fileURL)
     }
+
+    func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
+        UNUserNotificationCenter.current().requestAuthorization(options: [.alert, .badge, .sound]) { granted, _ in
+            print("Permission granted: \(granted)")
+        }
+        
+        application.registerForRemoteNotifications()
+        
+        return true
+    }
+
     
     func updateAllTimer(){
         for index in 0..<credentials.count{
