@@ -9,8 +9,7 @@ import SwiftUI
 
 struct AddCredentialView: View {
     @EnvironmentObject var viewModel: ViewModel
-    @State var credential: Credentials = Credentials(email: "", password: "", siteTitle: "", siteAddress: nil, healthStatus: 0, breachedStatus: 0, date: Date(), notes: nil, encryptionMethod: "")
-    @State var encryptSelection = "Select Encryption Method"
+    @State var credential: Credentials = Credentials(email: "", password: "", siteTitle: "", siteAddress: nil, healthStatus: 0, breachedStatus: 0, date: Date(), notes: nil)
     @State var isComplete = false
     
     var body: some View {
@@ -43,22 +42,6 @@ struct AddCredentialView: View {
                                         viewModel.generateOldPassword(totalLength: 64)
                                         credential.password = viewModel.generatedPassword
                                     }
-                                }
-                            }
-                        }
-                        Section(header: Text("Encryption Method")) {
-                            Menu(encryptSelection) {
-                                Button("AES"){
-                                    encryptSelection = "AES"
-                                    credential.encryptionMethod = "AES"
-                                }
-                                Button("RSA"){
-                                    encryptSelection = "RSA"
-                                    credential.encryptionMethod = "RSA"
-                                }
-                                Button("SHA"){
-                                    encryptSelection = "SHA"
-                                    credential.encryptionMethod = "SHA"
                                 }
                             }
                         }

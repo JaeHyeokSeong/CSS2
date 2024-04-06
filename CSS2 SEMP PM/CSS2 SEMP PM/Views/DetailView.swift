@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-var exampleCredentials: Credentials = Credentials(email: "google@gmail.com", password: "1234", siteTitle: "Google", siteAddress: "google.com", healthStatus: 0, breachedStatus: 0, date: Date(), notes: "4 digits", encryptionMethod: "AES")
+var exampleCredentials: Credentials = Credentials(email: "google@gmail.com", password: "1234", siteTitle: "Google", siteAddress: "google.com", healthStatus: 0, breachedStatus: 0, date: Date(), notes: "4 digits")
 
 
 struct DetailView: View {
@@ -84,20 +84,6 @@ struct DetailView: View {
                                 
                         }
                             .disabled(!isEditing)
-                        Section(header: Text("Encryption Method")) {
-                            Menu(credentials.encryptionMethod) {
-                                Button("AES"){
-                                    credentials.encryptionMethod = "AES"
-                                }
-                                Button("RSA"){
-                                    credentials.encryptionMethod = "RSA"
-                                }
-                                Button("SHA"){
-                                    credentials.encryptionMethod = "SHA"
-                                }
-                            }
-                        }
-                        .disabled(!isEditing)
                         
                         Section(header: Text("Notes")){
                             TextField("Notes", text: Binding<String>( get: { credentials.notes ?? "" }, set: { credentials.notes = $0 }), axis: .vertical)

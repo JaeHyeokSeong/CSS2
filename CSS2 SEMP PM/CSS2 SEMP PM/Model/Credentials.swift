@@ -18,11 +18,10 @@ struct Credentials: Hashable, Codable, Identifiable {
     var breachedStatus: Int
     var date: Date
     var notes: String?
-    var encryptionMethod: String
     var daysCount: Int = 30
     
     
-    init(email: String, password: String, siteTitle: String, siteAddress: String?, healthStatus: Int, breachedStatus: Int, date: Date, notes: String?, encryptionMethod: String) {
+    init(email: String, password: String, siteTitle: String, siteAddress: String?, healthStatus: Int, breachedStatus: Int, date: Date, notes: String?) {
         self.id = UUID().uuidString
         self.email = email
         self.password = password
@@ -32,6 +31,5 @@ struct Credentials: Hashable, Codable, Identifiable {
         self.breachedStatus = breachedStatus
         self.date = date
         self.notes = notes
-        self.encryptionMethod = encryptionMethod
     }
 }
