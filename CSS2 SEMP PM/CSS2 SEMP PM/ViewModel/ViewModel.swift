@@ -206,8 +206,7 @@ class ViewModel: ObservableObject {
 
     func updateLogin(id: String, newMasterPassword: String) {
         if let index = login.firstIndex(where: { $0.id == id }) {
-            
-            login[index].masterPassword = encryptString(newMasterPassword)
+            login[index].masterPassword = encryptString(newMasterPassword)!
             print("Updated login: \(login[index])")
             // Create Sym key
             saveLogins()
@@ -273,7 +272,7 @@ class ViewModel: ObservableObject {
     }
     
     func authUser(password: String) -> Bool {
-        if password == login.first?.masterPassword {
+        if password == decryptString(login.first!.masterPassword) {
             return true
         } else {
             return false
