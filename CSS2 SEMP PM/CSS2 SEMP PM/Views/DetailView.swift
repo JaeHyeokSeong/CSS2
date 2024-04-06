@@ -39,6 +39,7 @@ struct DetailView: View {
                             editButton = "Edit"
                             if(passwordChanged){
                                 credentials.daysCount = 30
+                                credentials.breachedStatus = 0
                             }
                             viewModel.updateCredential(id: credentials.id, updatedCredential: credentials)
                         }
