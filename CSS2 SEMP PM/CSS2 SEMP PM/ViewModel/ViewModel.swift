@@ -316,6 +316,7 @@ class ViewModel: ObservableObject {
     }
     
     func assessCredentialsAndScheduleNotifications() {
+        print("Schedule Timer")
         for credential in credentials {
             if credential.daysCount <= 0 {
                 scheduleNotification(for: credential, reason: "Time to change password")
@@ -328,6 +329,7 @@ class ViewModel: ObservableObject {
     }
     
     private func scheduleNotification(for credential: Credentials, reason: String) {
+        print("Schedule Timer")
         let content = UNMutableNotificationContent()
         content.title = NSString.localizedUserNotificationString(forKey: "Attention Needed!", arguments: nil)
         content.body = NSString.localizedUserNotificationString(forKey: "Credential for \(credential.siteTitle) \(reason).", arguments: nil)

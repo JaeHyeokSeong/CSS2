@@ -102,6 +102,18 @@ struct DetailView: View {
                                 .clipShape(RoundedRectangle(cornerRadius: 10))
                                 .foregroundColor(.red)
                             }
+                        
+                        Section {
+                            Menu ("Admin Tools") {
+                                Button ("Change Password Time Till Change") {
+                                    credentials.daysCount = 0
+                                }
+                                Button ("Change Breached") {
+                                    credentials.breachedStatus = 2
+                                }
+                            }
+                        }
+                        .disabled(isEditing)
                         }
                     }
                 }
