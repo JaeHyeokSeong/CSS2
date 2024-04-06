@@ -28,8 +28,8 @@ class ViewModel: NSObject, ObservableObject, UNUserNotificationCenterDelegate {
         prepareMasterKeyFile()
         loadLogins()
         prepareCredentialsFile()
-        loadCredentials()
-        updateAllTimer()
+//        loadCredentials()
+//        updateAllTimer()
         loadOrCreateSymmetricKey()
         
         
@@ -97,11 +97,16 @@ class ViewModel: NSObject, ObservableObject, UNUserNotificationCenterDelegate {
 
     
     func updateAllTimer(){
-        for index in 0..<credentials.count{
-            credentials[index].daysCount = 30-daysPassed(credentials[index].date)
-        }
-        saveCredentials()
-    }
+           var save = false
+           for index in 0..<credentials.count{
+               credentials[index].daysCount = 30-daysPassed(credentials[index].date)
+               save = true
+           }
+           if save{
+               saveCredentials()
+           }
+       }
+    
     func daysPassed(_ date: Date) -> Int{
         let calendar = Calendar.current
         let currentDate = Date()
@@ -408,6 +413,49 @@ class ViewModel: NSObject, ObservableObject, UNUserNotificationCenterDelegate {
             return nil
         }
     }
+    
+    
+    func encryptFile() {
+        do {
+            let fileURL = getDocumentsDirectory().appendingPathComponent("credentials.json")
+            print(fileURL)
+            let fileContents = try String(contentsOf: fileURL, encoding: .utf8)
+            print(fileContents)
+            if let encryptedString = encryptString(fileContents) {
+                try encryptedString.write(to: fileURL, atomically: true, encoding: .utf8)
+                print("File successfully encrypted and overwritten.")
+                print(encryptedString)
+            } else {
+                print("Failed to encrypt file contents.")
+            }
+        } catch {
+            print("Error occurred: \(error)")
+        }
+    }
+    
+    func decryptFile() {
+        do {
+            let fileURL = getDocumentsDirectory().appendingPathComponent("credentials.json")
+            print(fileURL)
+            let fileContents = try String(contentsOf: fileURL, encoding: .utf8)
+            
+            if let decryptedString = decryptString(fileContents) {
+                try decryptedString.write(to: fileURL, atomically: true, encoding: .utf8)
+                print("File successfully decrypted and overwritten.")
+                print(decryptedString)
+            } else {
+                print("Failed to decrypt file contents.")
+                print(decryptString(fileContents))
+                print(fileContents)
+            }
+        } catch {
+            print("Error occurred: \(error)")
+        }
+    }
+
+
+    
+    
     
     func load<T: Decodable>(_ filename: String) -> T {
         let data: Data

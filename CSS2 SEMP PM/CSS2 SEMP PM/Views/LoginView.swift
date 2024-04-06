@@ -37,8 +37,12 @@ struct LoginView: View {
                         .border(.red.opacity(0.4), width: CGFloat(errorInput))
                     
                     Button("Login") {
-                        showLoginScreen = viewModel.authUser(password: password)
-                        if showLoginScreen == false{
+                        if viewModel.authUser(password: password){
+                            viewModel.decryptFile()
+                            viewModel.loadCredentials()
+                            showLoginScreen = true
+                            
+                        } else{
                             errorInput = 3
                         }
                         password = ""
@@ -52,6 +56,8 @@ struct LoginView: View {
                     Button {
                         viewModel.faceIDAuth{ success in
                             if success{
+                                viewModel.decryptFile()
+                                viewModel.loadCredentials()
                                 showLoginScreen = true
                             } else{
                                 errorInput = 3

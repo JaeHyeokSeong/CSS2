@@ -80,6 +80,7 @@ struct MainPage: View {
             .navigationBarItems(leading:
                                     Button(action:{
                 //implement
+                viewModel.encryptFile()
                 showLogin = true
                 
             }){
