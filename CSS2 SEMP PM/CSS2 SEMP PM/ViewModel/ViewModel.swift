@@ -7,6 +7,7 @@
 
 import Foundation
 import LocalAuthentication
+import CryptoKit
 
 class ViewModel: ObservableObject {
     @Published var login: [Login] = []
@@ -15,14 +16,45 @@ class ViewModel: ObservableObject {
     @Published var usedLanguages: [String] = []
     private var languageRanges: [LanguageRange] = LanguageRangeModel.shared.ranges
     private var languageOldRanges: [LanguageRange] = LanguageRangeModel.shared.oldRanges
+    private var symmetricKeyData: Data?
     
     init() {
-        //deleteMasterKeyFile()
+        deleteMasterKeyFile()
         prepareMasterKeyFile()
         loadLogins()
         prepareCredentialsFile()
         loadCredentials()
         updateAllTimer()
+        loadOrCreateSymmetricKey()
+    }
+    
+    private func generateAndSaveSymmetricKey() {
+        let symmetricKey = SymmetricKey(size: .bits256)
+        let keyData = Data(symmetricKey.withUnsafeBytes { Array($0) })
+        saveDataToDocumentsDirectory(data: keyData, filename: "symmetricKey.dat")
+        self.symmetricKeyData = keyData
+    }
+        
+    private func loadOrCreateSymmetricKey() {
+        if let keyData = loadDataFromDocumentsDirectory(filename: "symmetricKey.dat") {
+            self.symmetricKeyData = keyData
+        } else {
+            generateAndSaveSymmetricKey()
+        }
+    }
+    
+    private func saveDataToDocumentsDirectory(data: Data, filename: String) {
+            let fileURL = getDocumentsDirectory().appendingPathComponent(filename)
+            do {
+                try data.write(to: fileURL, options: .atomicWrite)
+            } catch {
+                print("Error saving data to \(filename): \(error)")
+            }
+        }
+        
+    private func loadDataFromDocumentsDirectory(filename: String) -> Data? {
+        let fileURL = getDocumentsDirectory().appendingPathComponent(filename)
+        return try? Data(contentsOf: fileURL)
     }
     
     func updateAllTimer(){
@@ -176,6 +208,7 @@ class ViewModel: ObservableObject {
         if let index = login.firstIndex(where: { $0.id == id }) {
             login[index].masterPassword = newMasterPassword
             print("Updated login: \(login[index])")
+            // Create Sym key
             saveLogins()
         }
     }
@@ -284,5 +317,6 @@ class ViewModel: ObservableObject {
         }
     }
 }
+
 
 
