@@ -92,6 +92,15 @@ struct DetailView: View {
                         }
                         .disabled(!isEditing)
                         
+                        Section {
+                            Button("Copy") {
+                                UIPasteboard.general.string = credentials.password
+                                }
+                                .frame(maxWidth: .infinity, alignment: .center)
+                                .disabled(false)
+                                .clipShape(RoundedRectangle(cornerRadius: 10))
+                                .foregroundColor(.blue)
+                            }
                         
                         Section {
                             Button("Delete") {
