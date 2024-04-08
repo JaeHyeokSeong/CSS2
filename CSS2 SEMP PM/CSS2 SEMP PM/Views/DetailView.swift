@@ -60,11 +60,13 @@ struct DetailView: View {
                         Section(header: Text("Credentials")) {
                             TextField("Email", text: $credentials.email)
                                 .keyboardType(.emailAddress)
+                                .disabled(!isEditing)
                             HStack {
                                 if(isEditing){
                                     TextField("Password", text: $credentials.password)
                                 } else{
                                     SecureField("Password", text: $credentials.password)
+                                        .disabled(!isEditing)
                                 }
                                 if(editButton == "Confirm"){
                                     Menu("Gen"){
@@ -79,28 +81,21 @@ struct DetailView: View {
                                             passwordChanged = true
                                         }
                                     }
+                                } else{
+                                    Button(action:{
+                                        UIPasteboard.general.string = credentials.password
+                                    }){
+                                        Image(systemName: "doc.on.doc")
+                                    }
                                 }
                             }
-                            
-                                
                         }
-                            .disabled(!isEditing)
                         
                         Section(header: Text("Notes")){
                             TextField("Notes", text: Binding<String>( get: { credentials.notes ?? "" }, set: { credentials.notes = $0 }), axis: .vertical)
                                 .lineLimit(3...)
                         }
                         .disabled(!isEditing)
-                        
-                        Section {
-                            Button("Copy") {
-                                UIPasteboard.general.string = credentials.password
-                                }
-                                .frame(maxWidth: .infinity, alignment: .center)
-                                .disabled(false)
-                                .clipShape(RoundedRectangle(cornerRadius: 10))
-                                .foregroundColor(.blue)
-                            }
                         
                         Section {
                             Button("Delete") {
