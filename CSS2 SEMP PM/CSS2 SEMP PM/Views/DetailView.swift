@@ -17,6 +17,7 @@ struct DetailView: View {
     @State var isEditing = false
     @State var editButton = "Edit"
     @State var passwordChanged = false
+    @State var copyPrompt = false
     
     var body: some View {
         NavigationStack {
@@ -68,6 +69,9 @@ struct DetailView: View {
                                     SecureField("Password", text: $credentials.password)
                                         .disabled(!isEditing)
                                 }
+                                if(copyPrompt){
+                                    Text("Copied")
+                                }
                                 if(editButton == "Confirm"){
                                     Menu("Gen"){
                                         Button ("NewChars") {
@@ -83,7 +87,11 @@ struct DetailView: View {
                                     }
                                 } else{
                                     Button(action:{
+                                        copyPrompt = true
                                         UIPasteboard.general.string = credentials.password
+                                        DispatchQueue.main.asyncAfter(deadline: .now() + 2) { // Notification duration
+                                            copyPrompt = false
+                                        }
                                     }){
                                         Image(systemName: "doc.on.doc")
                                     }
