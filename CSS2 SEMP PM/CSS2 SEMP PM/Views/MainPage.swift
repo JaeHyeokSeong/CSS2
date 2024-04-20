@@ -71,9 +71,17 @@ struct MainPage: View {
                                 Text("\(credential.daysCount)")
                             }
                         }
-                        //.padding(.vertical, 10)
+                        .background(credential.breachedStatus == 1 || credential.daysCount == 0 ? Color.red.opacity(0.3) : Color.clear)
+                        .cornerRadius(5) // Optional: for slightly rounded corners for the background color
+                        .overlay(
+                                    RoundedRectangle(cornerRadius: 5)
+                                        .stroke(credential.breachedStatus == 1 || credential.daysCount == 0 ? Color.red : Color.clear, lineWidth: 2)
+                                )
                     }
                 }
+
+
+                
                 
             }
             .navigationBarTitle("Passwords", displayMode: .inline)
