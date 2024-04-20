@@ -374,7 +374,7 @@ class ViewModel: NSObject, ObservableObject, UNUserNotificationCenterDelegate {
         print("Schedule Timer")
         let content = UNMutableNotificationContent()
         content.title = NSString.localizedUserNotificationString(forKey: "Attention Needed!", arguments: nil)
-        content.body = NSString.localizedUserNotificationString(forKey: "Credential for \(credential.siteTitle) \(reason).", arguments: nil)
+        content.body = NSString.localizedUserNotificationString(forKey: "Credential for \(credential.siteTitle) requires updates: \(reason).", arguments: nil)
         content.sound = UNNotificationSound.default
         content.categoryIdentifier = "CREDENTIAL_ALERT"
         let trigger = UNTimeIntervalNotificationTrigger(timeInterval: 5, repeats: false)
